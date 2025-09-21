@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
-    <meta name="title" content="WorkAdventure Starter Kit">
-    <title>WorkAdventure test map</title>
+    <meta name="title" content="AR Online WorkAdventure Map">
+    <title>AR Online - Escritório Virtual</title>
     <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
     <script>
         window.onload = function () {
@@ -17,12 +17,12 @@
                 path = path.substr(path, path.length - 'index.html'.length);
             }
             const instanceId = Math.random().toString(36).substring(2, 15);
-            const url = `https://play.workadventu.re/_/${instanceId}/${host}${path}office.tmj`;
+            const url = `https://play.workadventu.re/_/${instanceId}/${host}${path}ar_online_map.tmj`;
             document.getElementById('testMapURL').href = url;
             document.getElementById('testMapBtnURL').href = url;
             document.getElementById('testMapURL').innerText = url;
 
-            const tmjURL = window.location.protocol + '//' + window.location.host + path + 'office.tmj';
+            const tmjURL = window.location.protocol + '//' + window.location.host + path + 'ar_online_map.tmj';
             document.getElementById('tmjURL').innerText = tmjURL;
 
             const gettingStartedLink = 'https://workadventu.re/getting-started?name=Map&mapUrl=' + tmjURL;
@@ -148,11 +148,11 @@
         </header>
         <main>
             <section>
-                <h2>Test my map</h2>
+                <h2>Testar o Mapa da AR Online</h2>
                 <p><a id="testMapURL" href="#" class="url"></a></p>
-                <p class="tips">(In order to test another map, locate "office.tmj" at the end of the URL and replace it by another file name)</p>
+                <p class="tips">(Para testar outro mapa, localize "ar_online_map.tmj" no final da URL e substitua por outro nome de arquivo)</p>
                 <img src="/office.png" alt="Map thumbnail" class="map">
-                <p><a id="testMapBtnURL" href="#" class="button">Test my map</a></p>
+                <p><a id="testMapBtnURL" href="#" class="button">Testar Mapa AR Online</a></p>
             </section>
 
             <section>
