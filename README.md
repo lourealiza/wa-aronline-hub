@@ -58,5 +58,9 @@ Sinta-se à vontade para contribuir com melhorias, novos assets ou funcionalidad
 
 ---
 
+## Referências
+
+- Guia: [Integração e Uso de Scripts Dinâmicos](integracao-uso-scripts-dinamicos.md)
+
 **Gerado por Manus AI**
 
