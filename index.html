@@ -21,9 +21,6 @@
 
             const instanceId = Math.random().toString(36).substring(2, 15);
             const url = `https://play.workadventu.re/_/${instanceId}/${host}${path}${mapFile}`;
-            document.getElementById('testMapURL').href = url;
-            document.getElementById('testMapBtnURL').href = url;
-            document.getElementById('testMapURL').innerText = url;
 
             const tmjURL = window.location.protocol + '//' + window.location.host + path + mapFile;
             document.getElementById('tmjURL').innerText = tmjURL;
@@ -45,6 +42,17 @@
             if (waGlobalEl) {
                 waGlobalEl.href = waGlobalURL;
                 waGlobalEl.innerText = waGlobalURL;
+            }
+
+            // Botão e link principal: usar WorkAdventure Global
+            const testMapLinkEl = document.getElementById('testMapURL');
+            const testMapBtnEl = document.getElementById('testMapBtnURL');
+            if (testMapLinkEl) {
+                testMapLinkEl.href = waGlobalURL;
+                testMapLinkEl.innerText = waGlobalURL;
+            }
+            if (testMapBtnEl) {
+                testMapBtnEl.href = waGlobalURL;
             }
 
         };
