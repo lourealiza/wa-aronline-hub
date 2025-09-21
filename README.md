@@ -53,5 +53,3 @@ Contribuições são bem-vindas! Passos sugeridos:
 - Pull Request explicando a motivação e o escopo
 
 ---
-
-**Gerado por Manus AI**
