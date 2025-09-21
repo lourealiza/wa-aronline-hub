@@ -2549,7 +2549,7 @@
                                        },
                                        {
                                            "id":  2,
-                                           "name":  "TelÃƒÂ£o TecnolÃƒÂ³gico",
+                                           "name":  "TelÃƒÆ’Ã‚Â£o TecnolÃƒÆ’Ã‚Â³gico",
                                            "point":  true,
                                            "x":  800.0,
                                            "y":  640.0,
@@ -2570,7 +2570,7 @@
                                        },
                                        {
                                            "id":  3,
-                                           "name":  "BalcÃƒÂ£o de Atendimento",
+                                           "name":  "BalcÃƒÆ’Ã‚Â£o de Atendimento",
                                            "point":  true,
                                            "x":  960.0,
                                            "y":  800.0,
@@ -2600,7 +2600,7 @@
                                        },
                                        {
                                            "id":  5,
-                                           "name":  "GestÃƒÂ£o de Projetos Board",
+                                           "name":  "GestÃƒÆ’Ã‚Â£o de Projetos Board",
                                            "point":  true,
                                            "x":  464.0,
                                            "y":  464.0,
@@ -5418,5 +5418,12 @@
     "tilewidth":  32,
     "type":  "map",
     "version":  "1.9",
-    "width":  50
+    "width":  50,
+    "properties":  [
+                       {
+                           "name":  "script",
+                           "value":  "mapScript.js",
+                           "type":  "string"
+                       }
+                   ]
 }
