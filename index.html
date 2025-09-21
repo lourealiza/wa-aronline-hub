@@ -31,6 +31,21 @@
             const gettingStartedLink = 'https://workadventu.re/getting-started?name=Map&mapUrl=' + tmjURL;
             document.getElementById('gettingStartedLink').href = gettingStartedLink;
 
+            // GitHub Pages links (direct file and WA global)
+            const ghBase = 'https://lourealiza.github.io/wa-aronline-hub/';
+            const ghMapURL = ghBase + mapFile;
+            const waGlobalURL = 'https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/' + mapFile;
+            const ghMapEl = document.getElementById('ghMapURL');
+            const waGlobalEl = document.getElementById('ghWAGlobalURL');
+            if (ghMapEl) {
+                ghMapEl.href = ghMapURL;
+                ghMapEl.innerText = ghMapURL;
+            }
+            if (waGlobalEl) {
+                waGlobalEl.href = waGlobalURL;
+                waGlobalEl.innerText = waGlobalURL;
+            }
+
         };
     </script>
     <style>
@@ -156,6 +171,8 @@
                 <p class="tips">(Mapa padrão fixo: "wa_map-interativo.tmj". Para testar outro mapa, edite o arquivo index para alterar o nome.)</p>
                 <img src="/office.png" alt="Map thumbnail" class="map">
                 <p><a id="testMapBtnURL" href="#" class="button">Testar Mapa AR Online</a></p>
+                <p>GitHub Pages (mapa direto):<br><a id="ghMapURL" href="#" class="url"></a></p>
+                <p>WorkAdventure (global):<br><a id="ghWAGlobalURL" href="#" class="url"></a></p>
             </section>
 
             <section>
