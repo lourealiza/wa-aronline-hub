@@ -32,10 +32,10 @@
             document.getElementById('gettingStartedLink').href = gettingStartedLink;
 
             // GitHub Pages links (direct file and WA global)
-            // On GitHub Pages, the TMJ lives under /public/
-            const ghBase = 'https://lourealiza.github.io/wa-aronline-hub/public/';
+            // GitHub Pages (arquivo na raiz do site)
+            const ghBase = 'https://lourealiza.github.io/wa-aronline-hub/';
             const ghMapURL = ghBase + mapFile;
-            const waGlobalURL = 'https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/public/' + mapFile;
+            const waGlobalURL = 'https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/' + mapFile;
             const ghMapEl = document.getElementById('ghMapURL');
             const waGlobalEl = document.getElementById('ghWAGlobalURL');
             if (ghMapEl) {
