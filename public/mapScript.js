@@ -77,6 +77,22 @@ WA.onInit().then(() => {
   WA.room.onEnterLayer('minigame-quiz').subscribe(() => {
     openIf(() => WA.ui.openCoWebSite('/widgets/quiz.html'));
   });
+  // Porta com senha (demo): abre removendo colisões no "vão" (3 tiles)
+  // Coordenadas (tiles) do vão calculadas a partir do layout atual (W=70,H=50)
+  const DOOR = { layer: 'porta-1', tiles: [ {x:34,y:17}, {x:35,y:17}, {x:36,y:17} ], password: 'AR2025' };
+  WA.room.onEnterLayer(DOOR.layer).subscribe(async () => {
+    const ans = prompt('Senha da porta:');
+    if (ans === DOOR.password) {
+      try {
+        for (const t of DOOR.tiles) {
+          await WA.room.setTile(t.x, t.y, 0);
+        }
+        WA.chat.sendChatMessage('Porta destrancada.', 'Sistema');
+      } catch (e) { console.warn(e); }
+    } else {
+      WA.chat.sendChatMessage('Senha incorreta.', 'Sistema');
+    }
+  });
   // Handlers para nomes normalizados (sem acentos)
   WA.room.onEnterLayer('ar-online-logo').subscribe(() => {
     WA.chat.sendChatMessage(
