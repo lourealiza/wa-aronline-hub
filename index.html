@@ -44,6 +44,21 @@
                 waGlobalEl.innerText = waGlobalURL;
             }
 
+            // Links adicionais: mapa Office gerado (em public/office_generated)
+            const officeRel = 'public/office_generated/work_adventure_map_from_image.json';
+            const ghOfficeURL = ghBase + officeRel;
+            const waGlobalOfficeURL = 'https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/' + officeRel;
+            const ghOfficeEl = document.getElementById('ghOfficeURL');
+            const ghOfficeWAEl = document.getElementById('ghOfficeWAGlobalURL');
+            if (ghOfficeEl) {
+                ghOfficeEl.href = ghOfficeURL;
+                ghOfficeEl.innerText = ghOfficeURL;
+            }
+            if (ghOfficeWAEl) {
+                ghOfficeWAEl.href = waGlobalOfficeURL;
+                ghOfficeWAEl.innerText = waGlobalOfficeURL;
+            }
+
             // Botão e link principal: usar WorkAdventure Global
             const testMapLinkEl = document.getElementById('testMapURL');
             const testMapBtnEl = document.getElementById('testMapBtnURL');
@@ -182,6 +197,10 @@
                 <p><a id="testMapBtnURL" href="#" class="button">Testar Mapa AR Online</a></p>
                 <p>GitHub Pages (mapa direto):<br><a id="ghMapURL" href="#" class="url"></a></p>
                 <p>WorkAdventure (global):<br><a id="ghWAGlobalURL" href="#" class="url"></a></p>
+                <hr>
+                <h3>Mapa Office (Gerado)</h3>
+                <p>GitHub Pages (mapa direto):<br><a id="ghOfficeURL" href="#" class="url"></a></p>
+                <p>WorkAdventure (global):<br><a id="ghOfficeWAGlobalURL" href="#" class="url"></a></p>
             </section>
 
             <section>
