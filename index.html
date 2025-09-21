@@ -16,13 +16,16 @@
             if (path.endsWith('index.html')) {
                 path = path.substr(path, path.length - 'index.html'.length);
             }
+            // Fixed map file (override disabled for now)
+            const mapFile = 'wa_map-interativo.tmj';
+
             const instanceId = Math.random().toString(36).substring(2, 15);
-            const url = `https://play.workadventu.re/_/${instanceId}/${host}${path}ar_online_map.tmj`;
+            const url = `https://play.workadventu.re/_/${instanceId}/${host}${path}${mapFile}`;
             document.getElementById('testMapURL').href = url;
             document.getElementById('testMapBtnURL').href = url;
             document.getElementById('testMapURL').innerText = url;
 
-            const tmjURL = window.location.protocol + '//' + window.location.host + path + 'ar_online_map.tmj';
+            const tmjURL = window.location.protocol + '//' + window.location.host + path + mapFile;
             document.getElementById('tmjURL').innerText = tmjURL;
 
             const gettingStartedLink = 'https://workadventu.re/getting-started?name=Map&mapUrl=' + tmjURL;
@@ -150,7 +153,7 @@
             <section>
                 <h2>Testar o Mapa da AR Online</h2>
                 <p><a id="testMapURL" href="#" class="url"></a></p>
-                <p class="tips">(Para testar outro mapa, localize "ar_online_map.tmj" no final da URL e substitua por outro nome de arquivo)</p>
+                <p class="tips">(Mapa padrão fixo: "wa_map-interativo.tmj". Para testar outro mapa, edite o arquivo index para alterar o nome.)</p>
                 <img src="/office.png" alt="Map thumbnail" class="map">
                 <p><a id="testMapBtnURL" href="#" class="button">Testar Mapa AR Online</a></p>
             </section>
