@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><title>Feed</title>
+<style>body{font-family:sans-serif;margin:0;padding:12px} .item{margin:8px 0;padding:8px;border:1px solid #ddd;border-radius:6px}</style>
+</head><body>
+<h3>Feed de Notícias</h3>
+<div id="feed"></div>
+<script>
+const data=[
+  {t:'Atualização de Produto',d:'Nova versão do AR-Online lançada!'},
+  {t:'Agenda',d:'Workshop de IA na sexta às 14h.'},
+  {t:'Blog',d:'5 dicas para automatizar seu atendimento.'}
+];
+const el=document.getElementById('feed');
+el.innerHTML=data.map(x=>`<div class="item"><b>${x.t}</b><div>${x.d}</div></div>`).join('');
+</script>
+</body></html>

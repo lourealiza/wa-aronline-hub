@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><title>Enquete</title>
+<style>body{font-family:sans-serif;margin:0;padding:12px} .res{margin-top:12px}</style>
+</head><body>
+<h3>Enquete</h3>
+<form id="f">
+  <label><input type="radio" name="opt" value="A"> Opção A</label><br>
+  <label><input type="radio" name="opt" value="B"> Opção B</label><br>
+  <label><input type="radio" name="opt" value="C"> Opção C</label><br>
+  <button>Votar</button>
+ </form>
+<div class="res" id="res"></div>
+<script>
+const key='poll-ar-online';
+const res=document.getElementById('res');
+function render(){ const c=JSON.parse(localStorage.getItem(key)||'{}'); const t=Object.values(c).reduce((a,b)=>a+b,0)||1; res.textContent=`A: ${Math.round(((c.A||0)/t)*100)}% | B: ${Math.round(((c.B||0)/t)*100)}% | C: ${Math.round(((c.C||0)/t)*100)}%`; }
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault(); const v=new FormData(e.target).get('opt'); if(!v) return; const c=JSON.parse(localStorage.getItem(key)||'{}'); c[v]=(c[v]||0)+1; localStorage.setItem(key,JSON.stringify(c)); render();});
+render();
+</script>
+</body></html>

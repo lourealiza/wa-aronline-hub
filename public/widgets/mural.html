@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="pt-br"><head><meta charset="utf-8"><title>Mural</title>
+<style>body{font-family:sans-serif;margin:0;padding:12px} #msgs .item{border:1px solid #ddd;margin:8px 0;padding:8px;border-radius:6px}</style>
+</head><body>
+<h3>Mural de Colaboração</h3>
+<form id="f"><input id="msg" placeholder="Deixe seu recado" style="width:70%"><button>Postar</button></form>
+<div id="msgs"></div>
+<script>
+const key='mural-ar-online';
+const el=document.getElementById('msgs');
+function load(){ const list=JSON.parse(localStorage.getItem(key)||'[]'); el.innerHTML=list.map(t=>`<div class="item">${t}</div>`).join(''); }
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault(); const v=document.getElementById('msg').value.trim(); if(!v) return; const list=JSON.parse(localStorage.getItem(key)||'[]'); list.unshift(v); localStorage.setItem(key,JSON.stringify(list)); document.getElementById('msg').value=''; load();});
+load();
+</script>
+</body></html>
