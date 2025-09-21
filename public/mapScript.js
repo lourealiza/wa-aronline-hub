@@ -77,4 +77,19 @@ WA.onInit().then(() => {
   WA.room.onEnterLayer('minigame-quiz').subscribe(() => {
     openIf(() => WA.ui.openCoWebSite('/widgets/quiz.html'));
   });
+  // Handlers para nomes normalizados (sem acentos)
+  WA.room.onEnterLayer('ar-online-logo').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Olá! Este é o logo da AR Online. Clique para saber mais.',
+      'AR Online Bot'
+    );
+    // WA.ui.openCoWebSite('https://www.ar-online.com.br/sobre');
+  });
+  WA.room.onEnterLayer('telao-tecnologico').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Assista aos nossos vídeos institucionais ou confira os dashboards!',
+      'AR Online Bot'
+    );
+    // WA.ui.openCoWebSite('https://www.ar-online.com.br/video-institucional');
+  });
 });

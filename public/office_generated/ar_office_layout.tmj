@@ -29,7 +29,19 @@
                          "columns":  25,
                          "image":  "../tilesets/WA_Room_Builder.png",
                          "imagewidth":  800,
-                         "imageheight":  1280
+                         "imageheight":  1280,
+                         "tiles":  [
+                                       {
+                                           "id":  0,
+                                           "properties":  [
+                                                              {
+                                                                  "name":  "collides",
+                                                                  "value":  true,
+                                                                  "type":  "bool"
+                                                              }
+                                                          ]
+                                       }
+                                   ]
                      },
                      {
                          "tilewidth":  32,
@@ -3615,11 +3627,11 @@
                    {
                        "draworder":  "topdown",
                        "id":  0,
-                       "name":  "AR Online Logo",
+                       "name":  "ar-online-logo",
                        "objects":  [
                                        {
                                            "id":  1,
-                                           "name":  "AR Online Logo",
+                                           "name":  "ar-online-logo",
                                            "rectangle":  true,
                                            "x":  1088.0,
                                            "y":  736.0,
@@ -3645,11 +3657,11 @@
                    {
                        "draworder":  "topdown",
                        "id":  0,
-                       "name":  "TelÃƒÆ’Ã‚Â£o TecnolÃƒÆ’Ã‚Â³gico",
+                       "name":  "TelÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o TecnolÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³gico",
                        "objects":  [
                                        {
                                            "id":  1,
-                                           "name":  "TelÃƒÆ’Ã‚Â£o TecnolÃƒÆ’Ã‚Â³gico",
+                                           "name":  "TelÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o TecnolÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³gico",
                                            "rectangle":  true,
                                            "x":  1088.0,
                                            "y":  640.0,
@@ -3675,11 +3687,11 @@
                    {
                        "draworder":  "topdown",
                        "id":  0,
-                       "name":  "BalcÃƒÆ’Ã‚Â£o Atendimento",
+                       "name":  "BalcÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o Atendimento",
                        "objects":  [
                                        {
                                            "id":  1,
-                                           "name":  "BalcÃƒÆ’Ã‚Â£o Atendimento",
+                                           "name":  "BalcÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o Atendimento",
                                            "rectangle":  true,
                                            "x":  1280.0,
                                            "y":  736.0,
@@ -3789,7 +3801,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  8,
-                       "name":  "Sala CEO",
+                       "name":  "sala-ceo",
                        "objects":  [
                                        {
                                            "y":  736,
@@ -3802,7 +3814,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala CEO",
+                                           "name":  "sala-ceo",
                                            "width":  64
                                        }
                                    ],
@@ -3815,7 +3827,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  9,
-                       "name":  "GestÃƒÂ£o de Projetos Board",
+                       "name":  "GestÃƒÆ’Ã‚Â£o de Projetos Board",
                        "objects":  [
                                        {
                                            "y":  864,
@@ -3837,7 +3849,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "GestÃƒÂ£o de Projetos Board",
+                                           "name":  "GestÃƒÆ’Ã‚Â£o de Projetos Board",
                                            "width":  64
                                        }
                                    ],
@@ -3850,7 +3862,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  10,
-                       "name":  "RH Boards",
+                       "name":  "rh-boards",
                        "objects":  [
                                        {
                                            "y":  928,
@@ -3872,7 +3884,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "RH Boards",
+                                           "name":  "rh-boards",
                                            "width":  64
                                        }
                                    ],
@@ -3885,7 +3897,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  11,
-                       "name":  "Holographic Screens",
+                       "name":  "holographic-screens",
                        "objects":  [
                                        {
                                            "y":  992,
@@ -3907,7 +3919,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Holographic Screens",
+                                           "name":  "holographic-screens",
                                            "width":  64
                                        }
                                    ],
@@ -3920,7 +3932,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  12,
-                       "name":  "Sala Comercial 1",
+                       "name":  "sala-comercial-1",
                        "objects":  [
                                        {
                                            "y":  736,
@@ -3933,7 +3945,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala Comercial 1",
+                                           "name":  "sala-comercial-1",
                                            "width":  64
                                        }
                                    ],
@@ -3946,7 +3958,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  13,
-                       "name":  "Sales Dashboard 1",
+                       "name":  "sales-dashboard-1",
                        "objects":  [
                                        {
                                            "y":  800,
@@ -3968,7 +3980,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Sales Dashboard 1",
+                                           "name":  "sales-dashboard-1",
                                            "width":  64
                                        }
                                    ],
@@ -3981,7 +3993,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  14,
-                       "name":  "Sala Comercial 2",
+                       "name":  "sala-comercial-2",
                        "objects":  [
                                        {
                                            "y":  992,
@@ -3994,7 +4006,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala Comercial 2",
+                                           "name":  "sala-comercial-2",
                                            "width":  64
                                        }
                                    ],
@@ -4007,7 +4019,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  15,
-                       "name":  "Sales Dashboard 2",
+                       "name":  "sales-dashboard-2",
                        "objects":  [
                                        {
                                            "y":  1056,
@@ -4029,7 +4041,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Sales Dashboard 2",
+                                           "name":  "sales-dashboard-2",
                                            "width":  64
                                        }
                                    ],
@@ -4042,7 +4054,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  16,
-                       "name":  "Sala Comercial 3",
+                       "name":  "sala-comercial-3",
                        "objects":  [
                                        {
                                            "y":  1248,
@@ -4055,7 +4067,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala Comercial 3",
+                                           "name":  "sala-comercial-3",
                                            "width":  64
                                        }
                                    ],
@@ -4068,7 +4080,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  17,
-                       "name":  "Sales Dashboard 3",
+                       "name":  "sales-dashboard-3",
                        "objects":  [
                                        {
                                            "y":  1312,
@@ -4090,7 +4102,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Sales Dashboard 3",
+                                           "name":  "sales-dashboard-3",
                                            "width":  64
                                        }
                                    ],
@@ -4103,7 +4115,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  18,
-                       "name":  "Sala Comercial 4",
+                       "name":  "sala-comercial-4",
                        "objects":  [
                                        {
                                            "y":  1504,
@@ -4116,7 +4128,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala Comercial 4",
+                                           "name":  "sala-comercial-4",
                                            "width":  64
                                        }
                                    ],
@@ -4129,7 +4141,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  19,
-                       "name":  "Sales Dashboard 4",
+                       "name":  "sales-dashboard-4",
                        "objects":  [
                                        {
                                            "y":  1568,
@@ -4151,7 +4163,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Sales Dashboard 4",
+                                           "name":  "sales-dashboard-4",
                                            "width":  64
                                        }
                                    ],
@@ -4164,7 +4176,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  20,
-                       "name":  "Sala de Marketing",
+                       "name":  "sala-marketing",
                        "objects":  [
                                        {
                                            "y":  736,
@@ -4177,7 +4189,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala de Marketing",
+                                           "name":  "sala-marketing",
                                            "width":  64
                                        }
                                    ],
@@ -4190,7 +4202,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  21,
-                       "name":  "Marketing Board",
+                       "name":  "marketing-board",
                        "objects":  [
                                        {
                                            "y":  800,
@@ -4212,7 +4224,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Marketing Board",
+                                           "name":  "marketing-board",
                                            "width":  64
                                        }
                                    ],
@@ -4225,7 +4237,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  22,
-                       "name":  "Sala de Desenvolvedores",
+                       "name":  "sala-desenvolvedores",
                        "objects":  [
                                        {
                                            "y":  1056,
@@ -4238,7 +4250,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala de Desenvolvedores",
+                                           "name":  "sala-desenvolvedores",
                                            "width":  64
                                        }
                                    ],
@@ -4251,7 +4263,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  23,
-                       "name":  "Dev Monitors",
+                       "name":  "dev-monitors",
                        "objects":  [
                                        {
                                            "y":  1120,
@@ -4273,7 +4285,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Dev Monitors",
+                                           "name":  "dev-monitors",
                                            "width":  64
                                        }
                                    ],
@@ -4286,7 +4298,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  24,
-                       "name":  "Sala de Suporte",
+                       "name":  "sala-suporte",
                        "objects":  [
                                        {
                                            "y":  1312,
@@ -4299,7 +4311,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Sala de Suporte",
+                                           "name":  "sala-suporte",
                                            "width":  64
                                        }
                                    ],
@@ -4312,7 +4324,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  25,
-                       "name":  "Support Dashboard",
+                       "name":  "support-dashboard",
                        "objects":  [
                                        {
                                            "y":  1376,
@@ -4334,7 +4346,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Support Dashboard",
+                                           "name":  "support-dashboard",
                                            "width":  64
                                        }
                                    ],
@@ -4347,7 +4359,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  26,
-                       "name":  "Auditorio",
+                       "name":  "auditorio",
                        "objects":  [
                                        {
                                            "y":  288,
@@ -4360,7 +4372,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Auditorio",
+                                           "name":  "auditorio",
                                            "width":  64
                                        }
                                    ],
@@ -4373,7 +4385,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  27,
-                       "name":  "Jardim Virtual",
+                       "name":  "jardim-virtual",
                        "objects":  [
                                        {
                                            "y":  288,
@@ -4395,7 +4407,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "Jardim Virtual",
+                                           "name":  "jardim-virtual",
                                            "width":  64
                                        }
                                    ],
@@ -4408,7 +4420,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  28,
-                       "name":  "Lounge e Copa",
+                       "name":  "lounge-copa",
                        "objects":  [
                                        {
                                            "y":  288,
@@ -4421,7 +4433,7 @@
                                            "properties":  [
 
                                                           ],
-                                           "name":  "Lounge e Copa",
+                                           "name":  "lounge-copa",
                                            "width":  64
                                        }
                                    ],
@@ -4464,7 +4476,7 @@
                    {
                        "draworder":  "topdown",
                        "id":  30,
-                       "name":  "CafÃƒÂ© Virtual",
+                       "name":  "CafÃƒÆ’Ã‚Â© Virtual",
                        "objects":  [
                                        {
                                            "y":  352,
@@ -4481,7 +4493,7 @@
                                                                   "type":  "string"
                                                               }
                                                           ],
-                                           "name":  "CafÃƒÂ© Virtual",
+                                           "name":  "CafÃƒÆ’Ã‚Â© Virtual",
                                            "width":  64
                                        }
                                    ],
