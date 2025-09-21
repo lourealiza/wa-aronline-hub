@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env.secret
 dist.zip
+# Local assets and archives
+public/wa_assets/
+work_adventure_assets.zip
