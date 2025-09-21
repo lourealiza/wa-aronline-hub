@@ -1,0 +1,67 @@
+﻿# wa-aronline-hub: Hub Interativo da AR Online no Work Adventure
+
+Este repositÃ³rio contÃ©m os arquivos necessÃ¡rios para configurar e personalizar o hub interativo da AR Online no Work Adventure. Aqui vocÃª encontrarÃ¡ o mapa base, assets visuais e scripts para criar uma experiÃªncia imersiva e funcional para os usuÃ¡rios.
+
+## Estrutura do RepositÃ³rio
+
+```
+wa-aronline-hub/
+â”œâ”€â”€ assets/                 # Imagens e outros assets visuais
+â”œâ”€â”€ maps/                   # Arquivos de mapa do Tiled (.json, .tmj)
+â”œâ”€â”€ scripts/                # Scripts JavaScript para interatividade
+â”œâ”€â”€ tilesets/               # Imagens de tilesets e objetos para o Tiled
+â”œâ”€â”€ README.md               # Este arquivo
+â””â”€â”€ ... (outros arquivos do projeto)
+```
+
+## Como Usar
+
+### 1. ConfiguraÃ§Ã£o Inicial
+
+Certifique-se de ter o [Tiled Map Editor](https://www.mapeditor.org/) instalado para editar os arquivos de mapa.
+
+### 2. Arquivos Gerados
+
+Os seguintes arquivos foram gerados e sÃ£o essenciais para a configuraÃ§Ã£o do seu mapa:
+
+*   `work_adventure_map.json`: O arquivo JSON do mapa Tiled, contendo a estrutura do mapa, camadas e objetos interativos.
+*   `sugestoes_interativas_work_adventure.md`: Um documento detalhando as sugestÃµes de elementos interativos que podem ser implementados no mapa.
+*   `integracao_tileset_imagens.md`: Um guia explicando como integrar corretamente os tilesets e as imagens no Tiled Editor.
+
+### 3. IntegraÃ§Ã£o do Mapa
+
+1.  **Mova o arquivo `work_adventure_map.json`** para a pasta `maps/` do seu repositÃ³rio. Se a pasta `maps/` nÃ£o existir, crie-a.
+2.  **Organize seus assets:** O arquivo `integracao_tileset_imagens.md` detalha a estrutura de pastas recomendada para seus tilesets e imagens. Certifique-se de que as imagens referenciadas no `work_adventure_map.json` (como `ar_online_lobby_logo.png`, `ar_online_telao_tecnologico.png`, etc.) estejam na pasta `tilesets/` ou em uma subpasta `assets/images/` dentro do seu repositÃ³rio, conforme a estrutura que vocÃª preferir.
+    *   **Ajuste os caminhos:** Abra o `work_adventure_map.json` no Tiled Editor. Para cada objeto que usa uma imagem, verifique e ajuste o caminho da propriedade `image` para que aponte corretamente para o local da imagem dentro do seu repositÃ³rio (ex: `../tilesets/ar_online_lobby_logo.png` ou `../assets/images/ar_online_lobby_logo.png`).
+3.  **Configure os Tilesets:** O `work_adventure_map.json` faz referÃªncia a um `tileset.json`. VocÃª precisarÃ¡ criar este arquivo ou configurar os tilesets diretamente no Tiled Editor, apontando para as imagens de tilesets localizadas na pasta `tilesets/` (ex: `WA_Room_Builder.png`, `WA_Decoration.png`). Consulte `integracao_tileset_imagens.md` para instruÃ§Ãµes detalhadas.
+
+### 4. ImplementaÃ§Ã£o da Interatividade
+
+O `work_adventure_map.json` jÃ¡ inclui propriedades para elementos interativos como `openWebsite`, `trigger` e `script`.
+
+*   **Links (`openWebsite`):** Para objetos com a propriedade `openWebsite`, o Work Adventure abrirÃ¡ automaticamente o URL especificado quando o jogador interagir com o objeto.
+*   **Scripts (`script`):** Para interaÃ§Ãµes mais complexas que utilizam a propriedade `script` (ex: `displayWelcomeMessage.js`), vocÃª precisarÃ¡ criar os arquivos JavaScript correspondentes na pasta `scripts/` do seu repositÃ³rio. Estes scripts conterÃ£o a lÃ³gica para as aÃ§Ãµes desejadas (ex: exibir uma mensagem, iniciar um diÃ¡logo, etc.).
+
+### 5. Testando o Mapa
+
+ApÃ³s configurar o mapa e os assets no Tiled Editor, vocÃª pode testÃ¡-lo localmente ou implantÃ¡-lo no seu ambiente Work Adventure para verificar se tudo estÃ¡ funcionando como esperado.
+
+## ContribuiÃ§Ã£o
+
+Sinta-se Ã  vontade para contribuir com melhorias, novos assets ou funcionalidades para este hub. Para isso, siga os passos:
+
+1.  FaÃ§a um fork deste repositÃ³rio.
+2.  Crie uma nova branch para suas alteraÃ§Ãµes (`git checkout -b minha-nova-feature`).
+3.  FaÃ§a suas alteraÃ§Ãµes e commit-as (`git commit -am 'Adiciona nova feature'`).
+4.  Envie para a branch (`git push origin minha-nova-feature`).
+5.  Abra um Pull Request.
+
+---
+
+## ReferÃªncias
+
+- Guia: [IntegraÃ§Ã£o e Uso de Scripts DinÃ¢micos](integracao-uso-scripts-dinamicos.md)
+
+**Gerado por Manus AI**
+
+
