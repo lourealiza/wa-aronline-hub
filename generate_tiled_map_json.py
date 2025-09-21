@@ -1,170 +1,226 @@
-
 import json
+from pathlib import Path
+from typing import List, Dict, Optional
 
-def generate_tiled_map_json():
-    # Definir as dimensões do mapa (ajustado para acomodar mais salas)
-    map_width = 70
-    map_height = 70
-    tile_size = 32 # pixels
 
-    # Estrutura básica do JSON para o Tiled
-    tiled_map = {
-        "compressionlevel": -1,
-        "height": map_height,
-        "infinite": False,
-        "layers": [],
-        "nextlayerid": 1,
-        "nextobjectid": 1,
+def _fill_rect(data: List[int], W: int, x: int, y: int, w: int, h: int, gid: int) -> None:
+    for yy in range(max(0, y), y + h):
+        if yy < 0 or yy >= len(data) // W:
+            continue
+        row_start = yy * W
+        for xx in range(max(0, x), x + w):
+            if xx < 0 or xx >= W:
+                continue
+            data[row_start + xx] = gid
+
+
+def generate_tiled_map_json(
+    output_path: str = "public/office_generated/ar_office_layout.tmj",
+    width_tiles: int = 70,
+    height_tiles: int = 50,
+    tile_size: int = 32,
+    tileset_image: str = "../tilesets/WA_Room_Builder.png",
+    floor_gid: int = 725,
+    zones: Optional[List[Dict]] = None,
+    map_name: str = "AR Online HQ",
+) -> str:
+    """Gera um TMJ compatível com WorkAdventure (Tiled 1.10.x) com:
+    - tileset embutido (sem TSX externo)
+    - camadas obrigatórias: 'start' e 'floorLayer'
+    - layout base (lobby + alas) com piso (GID configurável)
+    - camada 'zones' para objetos interativos (se fornecidos)
+    """
+
+    W, H = width_tiles, height_tiles
+    floor_data = [0] * (W * H)
+
+    # Lobby central (aprox. 40% x 30%)
+    lobby_w = max(10, round(W * 0.4))
+    lobby_h = max(8, round(H * 0.3))
+    lobby_x = (W - lobby_w) // 2
+    lobby_y = (H - lobby_h) // 2
+    _fill_rect(floor_data, W, lobby_x, lobby_y, lobby_w, lobby_h, floor_gid)
+
+    # Corredor superior até área de eventos
+    _fill_rect(floor_data, W, lobby_x, max(0, lobby_y - 6), lobby_w, 6, floor_gid)
+
+    # Alas laterais esquerda/direita
+    _fill_rect(floor_data, W, max(0, lobby_x - lobby_w), lobby_y, lobby_w, lobby_h, floor_gid)
+    _fill_rect(floor_data, W, min(W - lobby_w, lobby_x + lobby_w), lobby_y, lobby_w, lobby_h, floor_gid)
+
+    # Spawn no centro do lobby (em pixels)
+    spawn_x = float((lobby_x + lobby_w // 2) * tile_size)
+    spawn_y = float((lobby_y + lobby_h // 2) * tile_size)
+
+    # Tileset embutido (evita TSX externo)
+    tileset = {
+        "firstgid": 1,
+        "name": "WA_Room_Builder",
+        "tilewidth": tile_size,
+        "tileheight": tile_size,
+        "tilecount": 1000,
+        "columns": 25,
+        "image": tileset_image,
+        "imagewidth": 800,
+        "imageheight": 1280,
+    }
+
+    # Hotspots base (podem ser expandidos via 'zones')
+    def hotspot_layer(name: str, cx_px: float, cy_px: float, url: str) -> Dict:
+        return {
+            "draworder": "topdown",
+            "id": 0,  # placeholder; Tiled cuidará disso
+            "name": name,
+            "objects": [
+                {
+                    "id": 1,
+                    "name": name,
+                    "rectangle": True,
+                    "x": cx_px - tile_size,
+                    "y": cy_px - tile_size,
+                    "width": tile_size * 2,
+                    "height": tile_size * 2,
+                    "type": "hotspot",
+                    "visible": True,
+                    "properties": [
+                        {"name": "openWebsite", "type": "string", "value": url}
+                    ],
+                }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": True,
+            "x": 0,
+            "y": 0,
+        }
+
+    layers: List[Dict] = [
+        {
+            "id": 1,
+            "name": "floor",
+            "type": "tilelayer",
+            "width": W,
+            "height": H,
+            "data": floor_data,
+            "opacity": 1,
+            "visible": True,
+            "x": 0,
+            "y": 0,
+        },
+        {
+            "draworder": "topdown",
+            "id": 2,
+            "name": "start",
+            "objects": [
+                {
+                    "id": 1,
+                    "name": "spawn",
+                    "point": True,
+                    "x": spawn_x,
+                    "y": spawn_y,
+                    "type": "spawn",
+                    "visible": True,
+                }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": True,
+            "x": 0,
+            "y": 0,
+        },
+        {
+            "draworder": "topdown",
+            "id": 3,
+            "name": "floorLayer",
+            "objects": [
+                {
+                    "id": 2,
+                    "name": "floor",
+                    "rectangle": True,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "width": float(W * tile_size),
+                    "height": float(H * tile_size),
+                    "type": "floor",
+                    "visible": True,
+                }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": True,
+            "x": 0,
+            "y": 0,
+        },
+        hotspot_layer("AR Online Logo", spawn_x, spawn_y, "https://www.ar-online.com.br/sobre"),
+        hotspot_layer("Telão Tecnológico", spawn_x, max(0.0, spawn_y - tile_size * 3), "https://www.ar-online.com.br/video-institucional"),
+        hotspot_layer("Balcão Atendimento", spawn_x + tile_size * 6, spawn_y, "https://aria.ar-online.com"),
+        {
+            "draworder": "topdown",
+            "id": 4,
+            "name": "PrivateZones",
+            "objects": [
+                {
+                    "id": 3,
+                    "name": "CEO_Private_Zone",
+                    "rectangle": True,
+                    "x": float(max(0, lobby_x - lobby_w + 2) * tile_size),
+                    "y": float(lobby_y * tile_size),
+                    "width": float(tile_size * 6),
+                    "height": float(tile_size * 6),
+                    "type": "zone",
+                    "visible": True,
+                    "properties": [{"name": "private", "type": "bool", "value": True}],
+                }
+            ],
+            "opacity": 1,
+            "type": "objectgroup",
+            "visible": True,
+            "x": 0,
+            "y": 0,
+        },
+    ]
+
+    # Camada "zones" opcional (objetos adicionais)
+    if zones:
+        layers.append({
+            "id": len(layers) + 1,
+            "name": "zones",
+            "type": "objectgroup",
+            "objects": zones,
+            "opacity": 1,
+            "visible": True,
+            "x": 0,
+            "y": 0,
+        })
+
+    data = {
+        "type": "map",
+        "version": "1.10",
+        "tiledversion": "1.10.2",
         "orientation": "orthogonal",
         "renderorder": "right-down",
-        "tiledversion": "1.9.2", # Versão do Tiled Editor, pode ser ajustada
-        "tileheight": tile_size,
-        "tilesets": [],
+        "infinite": False,
+        "width": W,
+        "height": H,
         "tilewidth": tile_size,
-        "type": "map",
-        "version": "1.9",
-        "width": map_width
+        "tileheight": tile_size,
+        "compressionlevel": -1,
+        "nextlayerid": len(layers) + 1,
+        "nextobjectid": 100,
+        "properties": [
+            {"name": "mapName", "type": "string", "value": map_name},
+        ],
+        "tilesets": [tileset],
+        "layers": layers,
     }
 
-    # Adicionar um tileset básico (exemplo, você precisaria de um tileset real)
-    # Para simplificar, vamos assumir um tileset genérico. O usuário precisará ajustar isso.
-    tiled_map["tilesets"].append({
-        "firstgid": 1,
-        "source": "tileset.json" # O usuário precisará criar este arquivo tileset.json
-    })
+    out = Path(output_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    return str(out)
 
-    # Camada de tiles (fundo)
-    # Preencher com um tile padrão (ex: tile 1, que seria o piso azul se o tileset for configurado)
-    background_data = [1] * (map_width * map_height)
-    tiled_map["layers"].append({
-        "data": background_data,
-        "height": map_height,
-        "id": 1,
-        "name": "Background",
-        "opacity": 1,
-        "type": "tilelayer",
-        "visible": True,
-        "width": map_width,
-        "x": 0,
-        "y": 0
-    })
-
-    # Camada de objetos (para elementos interativos e decorativos)
-    object_layer = {
-        "draworder": "topdown",
-        "id": 2,
-        "name": "Objects",
-        "objects": [],
-        "opacity": 1,
-        "type": "objectgroup",
-        "visible": True,
-        "x": 0,
-        "y": 0
-    }
-
-    # Adicionar objetos baseados no layout (simplificado)
-    # Lobby/Recepção
-    object_layer["objects"].append({"id": 1, "name": "AR Online Logo", "point": True, "x": map_width/2 * tile_size, "y": map_height/2 * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_lobby_logo.png"}, {"name": "trigger", "type": "string", "value": "onPlayerEnters"}, {"name": "script", "type": "string", "value": "displayWelcomeMessage.js"}]})
-    object_layer["objects"].append({"id": 2, "name": "Telão Tecnológico", "point": True, "x": map_width/2 * tile_size, "y": (map_height/2 - 5) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_telao_tecnologico.png"}, {"name": "openWebsite", "type": "string", "value": "https://www.ar-online.com.br/video-institucional"}]})
-    object_layer["objects"].append({"id": 3, "name": "Balcão de Atendimento", "point": True, "x": (map_width/2 + 5) * tile_size, "y": map_height/2 * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_balcao_atendimento.png"}, {"name": "openWebsite", "type": "string", "value": "https://aria.ar-online.com"}]})
-
-    # Alas Laterais - Gestão e CEO
-    object_layer["objects"].append({"id": 4, "name": "Sala CEO", "point": True, "x": (map_width/4) * tile_size, "y": (map_height/4) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 5, "name": "Gestão de Projetos Board", "point": True, "x": (map_width/4 + 2) * tile_size, "y": (map_height/4 + 2) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_project_management_board.png"}, {"name": "openWebsite", "type": "string", "value": "https://jira.ar-online.com/dashboard"}]})
-    object_layer["objects"].append({"id": 10, "name": "RH Boards", "point": True, "x": (map_width/4 + 5) * tile_size, "y": (map_height/4 + 5) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_hr_boards.png"}, {"name": "openWebsite", "type": "string", "value": "https://rh.ar-online.com/portal"}]})
-    object_layer["objects"].append({"id": 11, "name": "Holographic Screens", "point": True, "x": (map_width/4 - 2) * tile_size, "y": (map_height/4 + 5) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_holographic_screens.png"}, {"name": "openWebsite", "type": "string", "value": "https://ar-online.com/inovacao"}]})
-
-    # Alas Laterais - Operações (4 Salas Comerciais)
-    # Sala Comercial 1
-    object_layer["objects"].append({"id": 18, "name": "Sala Comercial 1", "point": True, "x": (map_width * 3/4) * tile_size, "y": (map_height/4) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 19, "name": "Sales Dashboard 1", "point": True, "x": (map_width * 3/4 - 2) * tile_size, "y": (map_height/4 + 2) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_sales_dashboard.png"}, {"name": "openWebsite", "type": "string", "value": "https://crm.ar-online.com/dashboard/sala1"}]})
-    # Sala Comercial 2
-    object_layer["objects"].append({"id": 20, "name": "Sala Comercial 2", "point": True, "x": (map_width * 3/4) * tile_size, "y": (map_height/4 + 8) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 21, "name": "Sales Dashboard 2", "point": True, "x": (map_width * 3/4 - 2) * tile_size, "y": (map_height/4 + 10) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_sales_dashboard.png"}, {"name": "openWebsite", "type": "string", "value": "https://crm.ar-online.com/dashboard/sala2"}]})
-    # Sala Comercial 3
-    object_layer["objects"].append({"id": 22, "name": "Sala Comercial 3", "point": True, "x": (map_width * 3/4) * tile_size, "y": (map_height/4 + 16) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 23, "name": "Sales Dashboard 3", "point": True, "x": (map_width * 3/4 - 2) * tile_size, "y": (map_height/4 + 18) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_sales_dashboard.png"}, {"name": "openWebsite", "type": "string", "value": "https://crm.ar-online.com/dashboard/sala3"}]})
-    # Sala Comercial 4
-    object_layer["objects"].append({"id": 24, "name": "Sala Comercial 4", "point": True, "x": (map_width * 3/4) * tile_size, "y": (map_height/4 + 24) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 25, "name": "Sales Dashboard 4", "point": True, "x": (map_width * 3/4 - 2) * tile_size, "y": (map_height/4 + 26) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_sales_dashboard.png"}, {"name": "openWebsite", "type": "string", "value": "https://crm.ar-online.com/dashboard/sala4"}]})
-
-    object_layer["objects"].append({"id": 6, "name": "Sala Marketing", "point": True, "x": (map_width * 3/4) * tile_size, "y": (map_height/4 - 8) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 7, "name": "Marketing Board", "point": True, "x": (map_width * 3/4 - 2) * tile_size, "y": (map_height/4 - 6) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_marketing_board.png"}, {"name": "openWebsite", "type": "string", "value": "https://marketing.ar-online.com/dashboard"}]})
-    object_layer["objects"].append({"id": 13, "name": "Dev Monitors", "point": True, "x": (map_width * 3/4 - 5) * tile_size, "y": (map_height/4 + 32) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_dev_monitors.png"}, {"name": "openWebsite", "type": "string", "value": "https://github.com/ar-online-dev"}]})
-    object_layer["objects"].append({"id": 14, "name": "Support Dashboard", "point": True, "x": (map_width * 3/4 - 5) * tile_size, "y": (map_height/4 + 35) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_support_dashboard.png"}, {"name": "openWebsite", "type": "string", "value": "https://support.ar-online.com/dashboard"}]})
-
-    # Área de Convivência e Eventos
-    object_layer["objects"].append({"id": 8, "name": "Jardim Virtual", "point": True, "x": map_width/2 * tile_size, "y": (map_height/4 - 10) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "ar_online_virtual_garden.png"}, {"name": "openWebsite", "type": "string", "value": "https://ar-online.com/sustentabilidade"}]})
-    object_layer["objects"].append({"id": 15, "name": "Auditorio", "point": True, "x": (map_width/2 - 10) * tile_size, "y": (map_height/4 - 15) * tile_size, "type": "area"})
-    object_layer["objects"].append({"id": 16, "name": "Lounge Sofa", "point": True, "x": (map_width/2 + 10) * tile_size, "y": (map_height/4 - 15) * tile_size, "type": "image", "properties": [{"name": "image", "type": "string", "value": "WA_Seats.png"}, {"name": "openWebsite", "type": "string", "value": "https://ar-online.com/playlist-lounge"}]})
-
-    tiled_map["layers"].append(object_layer)
-
-    # Camada de Colisão (exemplo)
-    collision_data = [0] * (map_width * map_height) # 0 = sem colisão, 1 = colisão
-    # Adicionar algumas colisões de exemplo (paredes ao redor do lobby)
-    for i in range(map_width):
-        collision_data[i] = 1 # Top wall
-        collision_data[(map_height - 1) * map_width + i] = 1 # Bottom wall
-    for i in range(map_height):
-        collision_data[i * map_width] = 1 # Left wall
-        collision_data[i * map_width + (map_width - 1)] = 1 # Right wall
-
-    tiled_map["layers"].append({
-        "data": collision_data,
-        "height": map_height,
-        "id": 3,
-        "name": "Collisions",
-        "opacity": 1,
-        "type": "tilelayer",
-        "visible": False, # Camada de colisão geralmente invisível
-        "width": map_width,
-        "x": 0,
-        "y": 0
-    })
-
-    # Camada de Zonas Privadas (exemplo)
-    private_zone_layer = {
-        "draworder": "topdown",
-        "id": 4,
-        "name": "PrivateZones",
-        "objects": [],
-        "opacity": 1,
-        "type": "objectgroup",
-        "visible": True,
-        "x": 0,
-        "y": 0
-    }
-    # Exemplo de zona privada na sala do CEO
-    private_zone_layer["objects"].append({"id": 9, "name": "CEO_Private_Zone", "rectangle": True, "x": (map_width/4 - 3) * tile_size, "y": (map_height/4 - 3) * tile_size, "width": 6 * tile_size, "height": 6 * tile_size, "type": "zone", "properties": [{"name": "private", "type": "bool", "value": True}]})
-    # Zonas privadas para as 4 salas comerciais
-    private_zone_layer["objects"].append({"id": 26, "name": "Comercial_Zone_1", "rectangle": True, "x": (map_width * 3/4 - 4) * tile_size, "y": (map_height/4 - 2) * tile_size, "width": 8 * tile_size, "height": 6 * tile_size, "type": "zone", "properties": [{"name": "private", "type": "bool", "value": True}]})
-    private_zone_layer["objects"].append({"id": 27, "name": "Comercial_Zone_2", "rectangle": True, "x": (map_width * 3/4 - 4) * tile_size, "y": (map_height/4 + 6) * tile_size, "width": 8 * tile_size, "height": 6 * tile_size, "type": "zone", "properties": [{"name": "private", "type": "bool", "value": True}]})
-    private_zone_layer["objects"].append({"id": 28, "name": "Comercial_Zone_3", "rectangle": True, "x": (map_width * 3/4 - 4) * tile_size, "y": (map_height/4 + 14) * tile_size, "width": 8 * tile_size, "height": 6 * tile_size, "type": "zone", "properties": [{"name": "private", "type": "bool", "value": True}]})
-    private_zone_layer["objects"].append({"id": 29, "name": "Comercial_Zone_4", "rectangle": True, "x": (map_width * 3/4 - 4) * tile_size, "y": (map_height/4 + 22) * tile_size, "width": 8 * tile_size, "height": 6 * tile_size, "type": "zone", "properties": [{"name": "private", "type": "bool", "value": True}]})
-
-    tiled_map["layers"].append(private_zone_layer)
-
-    # Camada de Teleportes (exemplo)
-    teleport_layer = {
-        "draworder": "topdown",
-        "id": 5,
-        "name": "Teleports",
-        "objects": [],
-        "opacity": 1,
-        "type": "objectgroup",
-        "visible": True,
-        "x": 0,
-        "y": 0
-    }
-    # Exemplo de teleporte do lobby para o auditório
-    teleport_layer["objects"].append({"id": 17, "name": "LobbyToAuditorio", "rectangle": True, "x": (map_width/2 - 1) * tile_size, "y": (map_height/2 - 10) * tile_size, "width": 2 * tile_size, "height": 2 * tile_size, "type": "teleport", "properties": [{"name": "teleportToMap", "type": "string", "value": "nome_do_mapa_auditorio.json"}, {"name": "teleportToX", "type": "int", "value": 10}, {"name": "teleportToY", "type": "int", "value": 20}]})
-    tiled_map["layers"].append(teleport_layer)
-
-    with open("work_adventure_map_v2.json", "w") as f:
-        json.dump(tiled_map, f, indent=4)
 
 if __name__ == "__main__":
-    generate_tiled_map_json()
-
+    path = generate_tiled_map_json()
+    print(f"Mapa gerado em: {path}")
 
