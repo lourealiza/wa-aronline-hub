@@ -1,66 +1,57 @@
-# wa-aronline-hub: Hub Interativo da AR Online no Work Adventure
+﻿# wa-aronline-hub: Hub Interativo da AR Online no WorkAdventure
 
-Este repositório contém os arquivos necessários para configurar e personalizar o hub interativo da AR Online no Work Adventure. Aqui você encontrará o mapa base, assets visuais e scripts para criar uma experiência imersiva e funcional para os usuários.
+Este repositório contém os arquivos necessários para configurar e publicar o hub interativo da AR Online no WorkAdventure. Aqui você encontra o mapa base, tilesets, página inicial e script do mapa para interações dinâmicas.
 
 ## Estrutura do Repositório
 
-```
+`
 wa-aronline-hub/
-├── assets/                 # Imagens e outros assets visuais
-├── maps/                   # Arquivos de mapa do Tiled (.json, .tmj)
-├── scripts/                # Scripts JavaScript para interatividade
-├── tilesets/               # Imagens de tilesets e objetos para o Tiled
-├── README.md               # Este arquivo
-└── ... (outros arquivos do projeto)
-```
+- public/
+  - images/                 # Ícones e imagens públicas
+  - wa_map-interativo.tmj   # Mapa padrão (Tiled JSON - TMJ)
+  - mapScript.js            # Script do mapa (map-scripting)
+- tilesets/                 # Tilesets e imagens usadas pelo mapa
+- src/                      # Código Vite (mínimo)
+- index.html                # Homepage com links para testar/publicar
+- vite.config.ts            # Configuração Vite + otimizador de mapas
+- tsconfig.json             # TypeScript config
+- package.json              # Scripts NPM
+- README.md                 # Este arquivo
+`
 
-## Como Usar
+## Como Rodar Localmente
 
-### 1. Configuração Inicial
+- Desenvolvimento: 
+pm run start → abre em http://localhost:5173/
+- Preview de produção: 
+pm run build e 
+pm run prod → http://localhost:4173/
 
-Certifique-se de ter o [Tiled Map Editor](https://www.mapeditor.org/) instalado para editar os arquivos de mapa.
+## Publicação (GitHub Pages)
 
-### 2. Arquivos Gerados
+- Mapa direto: https://lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
+- WorkAdventure (global): https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
 
-Os seguintes arquivos foram gerados e são essenciais para a configuração do seu mapa:
+## Mapa Padrão e Scripts Dinâmicos
 
-*   `work_adventure_map.json`: O arquivo JSON do mapa Tiled, contendo a estrutura do mapa, camadas e objetos interativos.
-*   `sugestoes_interativas_work_adventure.md`: Um documento detalhando as sugestões de elementos interativos que podem ser implementados no mapa.
-*   `integracao_tileset_imagens.md`: Um guia explicando como integrar corretamente os tilesets e as imagens no Tiled Editor.
+- O mapa padrão é public/wa_map-interativo.tmj.
+- O script do mapa está em public/mapScript.js e é referenciado pela propriedade raiz script dentro do TMJ.
+- Guia detalhado: [Integração e Uso de Scripts Dinâmicos](integracao-uso-scripts-dinamicos.md)
 
-### 3. Integração do Mapa
+## Otimização de Mapas (build)
 
-1.  **Mova o arquivo `work_adventure_map.json`** para a pasta `maps/` do seu repositório. Se a pasta `maps/` não existir, crie-a.
-2.  **Organize seus assets:** O arquivo `integracao_tileset_imagens.md` detalha a estrutura de pastas recomendada para seus tilesets e imagens. Certifique-se de que as imagens referenciadas no `work_adventure_map.json` (como `ar_online_lobby_logo.png`, `ar_online_telao_tecnologico.png`, etc.) estejam na pasta `tilesets/` ou em uma subpasta `assets/images/` dentro do seu repositório, conforme a estrutura que você preferir.
-    *   **Ajuste os caminhos:** Abra o `work_adventure_map.json` no Tiled Editor. Para cada objeto que usa uma imagem, verifique e ajuste o caminho da propriedade `image` para que aponte corretamente para o local da imagem dentro do seu repositório (ex: `../tilesets/ar_online_lobby_logo.png` ou `../assets/images/ar_online_lobby_logo.png`).
-3.  **Configure os Tilesets:** O `work_adventure_map.json` faz referência a um `tileset.json`. Você precisará criar este arquivo ou configurar os tilesets diretamente no Tiled Editor, apontando para as imagens de tilesets localizadas na pasta `tilesets/` (ex: `WA_Room_Builder.png`, `WA_Decoration.png`). Consulte `integracao_tileset_imagens.md` para instruções detalhadas.
-
-### 4. Implementação da Interatividade
-
-O `work_adventure_map.json` já inclui propriedades para elementos interativos como `openWebsite`, `trigger` e `script`.
-
-*   **Links (`openWebsite`):** Para objetos com a propriedade `openWebsite`, o Work Adventure abrirá automaticamente o URL especificado quando o jogador interagir com o objeto.
-*   **Scripts (`script`):** Para interações mais complexas que utilizam a propriedade `script` (ex: `displayWelcomeMessage.js`), você precisará criar os arquivos JavaScript correspondentes na pasta `scripts/` do seu repositório. Estes scripts conterão a lógica para as ações desejadas (ex: exibir uma mensagem, iniciar um diálogo, etc.).
-
-### 5. Testando o Mapa
-
-Após configurar o mapa e os assets no Tiled Editor, você pode testá-lo localmente ou implantá-lo no seu ambiente Work Adventure para verificar se tudo está funcionando como esperado.
+O projeto usa wa-map-optimizer-vite durante o build:
+- Otimiza tilesets e gera versões empacotadas dos mapas para o diretório dist/.
+- Para que a otimização funcione, o TMJ deve referenciar corretamente o tileset (ex.: ../tilesets/WA_Room_Builder.png).
 
 ## Contribuição
 
-Sinta-se à vontade para contribuir com melhorias, novos assets ou funcionalidades para este hub. Para isso, siga os passos:
-
-1.  Faça um fork deste repositório.
-2.  Crie uma nova branch para suas alterações (`git checkout -b minha-nova-feature`).
-3.  Faça suas alterações e commit-as (`git commit -am 'Adiciona nova feature'`).
-4.  Envie para a branch (`git push origin minha-nova-feature`).
-5.  Abra um Pull Request.
+Contribuições são bem-vindas! Passos sugeridos:
+- Fork do repositório
+- Nova branch: git checkout -b minha-nova-feature
+- Commits claros e objetivos
+- Pull Request explicando a motivação e o escopo
 
 ---
 
-## Referências
-
-- Guia: [Integração e Uso de Scripts Dinâmicos](integracao-uso-scripts-dinamicos.md)
-
 **Gerado por Manus AI**
-
