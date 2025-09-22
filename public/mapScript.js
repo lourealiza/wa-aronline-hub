@@ -25,7 +25,118 @@ WA.onInit().then(() => {
     // WA.ui.openCoWebSite('https://www.ar-online.com.br/video-institucional');
   });
 
+  WA.room.onEnterLayer('Balcão Atendimento').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Bem-vindo ao balcão de atendimento! Como posso ajudá-lo hoje?',
+      'AR Online Bot'
+    );
+    // WA.ui.openCoWebSite('https://aria.ar-online.com');
+  });
+
+  // Interações por tipo de sala
+  WA.room.onEnterLayer('Desenvolvimento').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de Desenvolvimento - Equipe de programação e desenvolvimento de software.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('QA').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de QA - Testes e garantia de qualidade dos produtos.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('DevOps').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de DevOps - Infraestrutura e deploy automatizado.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Marketing').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de Marketing - Campanhas e estratégias de marketing digital.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Design').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de Design - Criação visual e experiência do usuário.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('RH').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Recursos Humanos - Gestão de pessoas e processos internos.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Financeiro').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área Financeira - Controle financeiro e planejamento orçamentário.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Vendas').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de Vendas - Estratégias comerciais e relacionamento com clientes.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Suporte').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Área de Suporte - Atendimento ao cliente e suporte técnico.',
+      'Sistema'
+    );
+  });
+
+  // Salas de reunião
+  WA.room.onEnterLayer('Sala de Reunião A').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Sala de Reunião A - Disponível para reuniões da equipe.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Sala de Reunião B').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Sala de Reunião B - Disponível para reuniões da equipe.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Auditório').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Auditório - Espaço para apresentações e eventos corporativos.',
+      'Sistema'
+    );
+  });
+
+  WA.room.onEnterLayer('Treinamento').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Sala de Treinamento - Capacitação e desenvolvimento da equipe.',
+      'Sistema'
+    );
+  });
+
+  // Zona privada da diretoria
+  WA.room.onEnterLayer('Diretoria_Private_Zone').subscribe(() => {
+    WA.chat.sendChatMessage(
+      'Zona Privada - Acesso restrito à diretoria.',
+      'Sistema'
+    );
+  });
+
   // NPC RH: menu simples via chat
+  // Comentado - camadas não existem no novo mapa
+  /*
   let awaitingNpc = null;
   const openIf = (fn) => { try { fn && fn(); } catch (e) { console.warn(e); } };
 
@@ -93,7 +204,9 @@ WA.onInit().then(() => {
       WA.chat.sendChatMessage('Senha incorreta.', 'Sistema');
     }
   });
-  // Handlers para nomes normalizados (sem acentos)
+  */
+  // Handlers para nomes normalizados (sem acentos) - Comentado pois já temos os handlers acima
+  /*
   WA.room.onEnterLayer('ar-online-logo').subscribe(() => {
     WA.chat.sendChatMessage(
       'Olá! Este é o logo da AR Online. Clique para saber mais.',
@@ -108,4 +221,5 @@ WA.onInit().then(() => {
     );
     // WA.ui.openCoWebSite('https://www.ar-online.com.br/video-institucional');
   });
+  */
 });
