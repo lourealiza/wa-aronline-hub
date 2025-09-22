@@ -17,7 +17,7 @@
                 path = path.substr(path, path.length - 'index.html'.length);
             }
             // Fixed map file (override disabled for now)
-            const mapFile = 'wa_map-interativo.tmj';
+            const mapFile = 'wa_map-interativo.json';
 
             const instanceId = Math.random().toString(36).substring(2, 15);
             const url = `https://play.workadventu.re/_/${instanceId}/${host}${path}${mapFile}`;
