@@ -27,7 +27,7 @@
                          "tileheight":  32,
                          "tilecount":  1000,
                          "columns":  25,
-                         "image":  "../tilesets/WA_Room_Builder.png",
+                         "image":  "WA_Room_Builder.png",
                          "imagewidth":  800,
                          "imageheight":  1280,
                          "tiles":  [
@@ -50,7 +50,7 @@
                          "columns":  12,
                          "tilecount":  96,
                          "tileheight":  32,
-                         "image":  "../tilesets/WA_Decoration.png",
+                         "image":  "WA_Decoration.png",
                          "name":  "WA_Decoration",
                          "imagewidth":  384
                      },
@@ -61,7 +61,7 @@
                          "columns":  13,
                          "tilecount":  182,
                          "tileheight":  32,
-                         "image":  "../tilesets/WA_Seats.png",
+                         "image":  "WA_Seats.png",
                          "name":  "WA_Seats",
                          "imagewidth":  416
                      }

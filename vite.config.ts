@@ -32,7 +32,7 @@ export default defineConfig({
             },
         },
     },
-    plugins: [...getMapsOptimizers(maps, optimizerOptions)],
+    plugins: [], // Temporariamente desabilitado para debug
     server: {
         host: "localhost",
         headers: {
