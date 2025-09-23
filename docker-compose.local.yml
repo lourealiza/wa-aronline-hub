@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  # Banco de Dados PostgreSQL para desenvolvimento
+  postgres:
+    image: postgres:13
+    container_name: wa-local-postgres
+    environment:
+      POSTGRES_DB: workadventure_local
+      POSTGRES_USER: wa_user
+      POSTGRES_PASSWORD: wa_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Redis para Cache
+  redis:
+    image: redis:6-alpine
+    container_name: wa-local-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # WorkAdventure Backend (versão de desenvolvimento)
+  workadventure:
+    image: thecodingmachine/workadventure:latest
+    container_name: wa-local-backend
+    ports:
+      - "8080:80"
+    environment:
+      # Banco de Dados Local
+      - DATABASE_URL=postgresql://wa_user:wa_password@postgres:5432/workadventure_local
+      - REDIS_URL=redis://redis:6379
+      
+      # Configurações básicas
+      - JWT_SECRET=local_jwt_secret_key_for_development
+      - SECRET_KEY=local_secret_key_for_development
+      
+      # Domínio local
+      - DOMAIN=localhost:8080
+      - ADMIN_API_URL=http://localhost:8080/admin
+      
+      # Modo desenvolvimento
+      - NODE_ENV=development
+      - DEBUG=true
+      
+      # Integrações básicas (sem OAuth2 por enquanto)
+      - ENABLE_GOOGLE_DOCS=false
+      - ENABLE_GOOGLE_DRIVE=false
+      - ENABLE_EXCALIDRAW=true
+      - ENABLE_ERASER=true
+      - ENABLE_CARDS=true
+      
+      # Configurações da empresa
+      - COMPANY_NAME=AR Online
+      - COMPANY_EMAIL=contato@ar-online.com.br
+      - COMPANY_WEBSITE=https://www.ar-online.com.br
+      
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    volumes:
+      - ./public:/app/maps
+      - ./uploads:/app/uploads
+
+volumes:
+  postgres_data:
+    driver: local
