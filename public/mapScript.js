@@ -282,7 +282,8 @@ WA.onInit().then(() => {
       '📍 Área Central - Circulação principal\n' +
       '🎯 Acesso a todos os setores da empresa\n' +
       '💡 Digite /menu para ver comandos disponíveis\n' +
-      '🚶 Navegue pelos corredores para acessar outras áreas',
+      '🚶 Navegue pelos corredores para acessar outras áreas\n' +
+      '🎪 Eventos e reuniões acontecem aqui!',
       'Recepção AR Online'
     );
   });
@@ -746,6 +747,104 @@ WA.onInit().then(() => {
   });
   */
   // Handlers para nomes normalizados (sem acentos) - Comentado pois já temos os handlers acima
+  // ===== INTERAÇÕES DETALHADAS POR SALA =====
+  
+  // CEO - Gabinete executivo
+  WA.room.onEnterLayer('CEO').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '👑 Gabinete do CEO - Louisa Realiza\n' +
+      '🎯 Decisões estratégicas e visão da empresa\n' +
+      '📈 Crescimento e expansão da AR Online\n' +
+      '🤝 Reuniões executivas e planejamento\n' +
+      '💼 Agendamentos: contato@ar-online.com.br',
+      'Sistema CEO'
+    );
+  });
+
+  // RH - Recursos Humanos
+  WA.room.onEnterLayer('RH').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '👥 Recursos Humanos - Caroline\n' +
+      '📋 Gestão de pessoas e cultura organizacional\n' +
+      '🎓 Treinamentos e desenvolvimento\n' +
+      '📊 Avaliações e feedback\n' +
+      '💼 Vagas abertas: rh@ar-online.com.br',
+      'Sistema RH'
+    );
+  });
+
+  // MARKETING - Estratégia de mercado
+  WA.room.onEnterLayer('Marketing').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '📢 Área de Marketing - Milena\n' +
+      '🎯 Estratégias de mercado e branding\n' +
+      '📱 Redes sociais e conteúdo digital\n' +
+      '📊 Campanhas e métricas de performance\n' +
+      '🚀 Lançamentos e eventos da empresa',
+      'Sistema Marketing'
+    );
+  });
+
+  // QA - Qualidade e Testes
+  WA.room.onEnterLayer('QA').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🔍 Área de QA - Qualidade e Testes\n' +
+      '✅ Garantia de qualidade dos produtos\n' +
+      '🧪 Testes automatizados e manuais\n' +
+      '🐛 Relatórios de bugs e correções\n' +
+      '📋 Documentação técnica e processos',
+      'Sistema QA'
+    );
+  });
+
+  // AUDITÓRIO - Eventos e apresentações
+  WA.room.onEnterLayer('Auditório').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🎭 Auditório - Eventos e Apresentações\n' +
+      '📺 Capacidade: 50 pessoas\n' +
+      '🎤 Apresentações e treinamentos\n' +
+      '📅 Próximo evento: Reunião Geral (Sexta 15h)\n' +
+      '💡 Equipamentos: Projetor, Som, Wi-Fi',
+      'Sistema Auditório'
+    );
+  });
+
+  // CAFÉ - Área de convivência
+  WA.room.onEnterLayer('Café').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '☕ Café - Área de Convivência\n' +
+      '🍵 Café, chá e lanches disponíveis\n' +
+      '💬 Espaço para conversas informais\n' +
+      '🎮 Jogos e entretenimento\n' +
+      '🌱 Plantas e ambiente relaxante',
+      'Sistema Café'
+    );
+  });
+
+  // IMPRESSÃO - Centro de impressão
+  WA.room.onEnterLayer('Impressão').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🖨️ Centro de Impressão\n' +
+      '📄 Impressoras coloridas e P&B\n' +
+      '📋 Documentos corporativos\n' +
+      '📊 Relatórios e apresentações\n' +
+      '💡 Suporte técnico disponível',
+      'Sistema Impressão'
+    );
+  });
+
+  // ARQUIVO - Documentação
+  WA.room.onEnterLayer('Arquivo').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '📁 Arquivo - Documentação\n' +
+      '📚 Documentos históricos da empresa\n' +
+      '📋 Contratos e acordos\n' +
+      '📊 Relatórios e análises\n' +
+      '🔍 Sistema de busca digital',
+      'Sistema Arquivo'
+    );
+  });
+
   /*
   WA.room.onEnterLayer('ar-online-logo').subscribe(() => {
     WA.chat.sendChatMessage(

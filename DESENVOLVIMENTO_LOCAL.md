@@ -3,6 +3,7 @@
 ## ⚡ **Início Rápido**
 
 ### **Pré-requisitos**
+
 - Docker Desktop instalado
 - Docker Compose instalado
 - 4GB RAM disponível
@@ -10,16 +11,19 @@
 ### **Passos**
 
 1. **Executar script de início**
+
 ```bash
 chmod +x start-local.sh
 ./start-local.sh
 ```
 
 2. **Acessar aplicação**
-- **WorkAdventure**: http://localhost:8080
-- **Admin**: http://localhost:8080/admin
+
+- **WorkAdventure**: <http://localhost:8080>
+- **Admin**: <http://localhost:8080/admin>
 
 3. **Testar integrações**
+
 - Excalidraw (desenho colaborativo)
 - Eraser (ferramenta de desenho)
 - Cards (sistema Kanban)
@@ -29,17 +33,20 @@ chmod +x start-local.sh
 ## 🔧 **Configuração Atual**
 
 ### **Serviços Iniciados**
+
 - **PostgreSQL**: Porta 5432
 - **Redis**: Porta 6379
 - **WorkAdventure**: Porta 8080
 
 ### **Integrações Disponíveis**
+
 - ✅ **Excalidraw** - Desenho colaborativo
 - ✅ **Eraser** - Ferramenta de desenho
 - ✅ **Cards** - Sistema Kanban
 - ❌ **Google Docs/Drive** - Requer OAuth2
 
 ### **Mapa AR Online**
+
 - Localizado em: `./public/wa_map-interativo.tmj`
 - Script: `./public/mapScript.js`
 - Tilesets: `./public/tilesets/`
@@ -49,16 +56,19 @@ chmod +x start-local.sh
 ## 🎯 **Testando o Mapa AR Online**
 
 ### **1. Acessar WorkAdventure**
-1. Vá para: http://localhost:8080
+
+1. Vá para: <http://localhost:8080>
 2. Faça login (modo desenvolvimento)
 3. Navegue para o mapa AR Online
 
 ### **2. Testar Comandos**
+
 - `/menu` - Menu principal
 - `/integrations` - Status das integrações
 - `/info` - Informações da empresa
 
 ### **3. Testar Integrações**
+
 - **Excalidraw**: Menu → Integrações → Excalidraw
 - **Cards**: Menu → Integrações → Cards
 - **Eraser**: Menu → Integrações → Eraser
@@ -68,6 +78,7 @@ chmod +x start-local.sh
 ## 🛠️ **Comandos Úteis**
 
 ### **Gerenciar Serviços**
+
 ```bash
 # Iniciar
 docker-compose -f docker-compose.local.yml up -d
@@ -86,6 +97,7 @@ docker-compose -f docker-compose.local.yml ps
 ```
 
 ### **Banco de Dados**
+
 ```bash
 # Conectar ao PostgreSQL
 docker exec -it wa-local-postgres psql -U wa_user -d workadventure_local
@@ -102,6 +114,7 @@ docker exec -i wa-local-postgres psql -U wa_user workadventure_local < backup.sq
 ## 🔍 **Solução de Problemas**
 
 ### **Problema: Serviços não iniciam**
+
 ```bash
 # Verificar logs
 docker-compose -f docker-compose.local.yml logs
@@ -114,6 +127,7 @@ sudo systemctl restart docker
 ```
 
 ### **Problema: Porta 8080 ocupada**
+
 ```bash
 # Verificar processos na porta
 lsof -i :8080
@@ -125,6 +139,7 @@ sudo kill -9 PID
 ```
 
 ### **Problema: Banco de dados não conecta**
+
 ```bash
 # Verificar status do PostgreSQL
 docker exec -it wa-local-postgres psql -U wa_user -d workadventure_local
@@ -140,6 +155,7 @@ docker-compose -f docker-compose.local.yml up -d
 ## 📊 **Monitoramento**
 
 ### **Verificar Recursos**
+
 ```bash
 # Uso de CPU e RAM
 docker stats
@@ -152,6 +168,7 @@ docker-compose -f docker-compose.local.yml logs -f
 ```
 
 ### **Métricas dos Serviços**
+
 - **PostgreSQL**: `docker exec -it wa-local-postgres psql -U wa_user -d workadventure_local -c "SELECT * FROM pg_stat_activity;"`
 - **Redis**: `docker exec -it wa-local-redis redis-cli info`
 - **WorkAdventure**: Logs em `docker-compose logs workadventure`
@@ -161,12 +178,14 @@ docker-compose -f docker-compose.local.yml logs -f
 ## 🎉 **Próximos Passos**
 
 ### **Para Produção**
+
 1. Configurar Google OAuth2
 2. Usar servidor cloud
 3. Configurar SSL
 4. Configurar backup automatizado
 
 ### **Para Desenvolvimento**
+
 1. Testar todas as integrações
 2. Personalizar mapa AR Online
 3. Adicionar novas funcionalidades
@@ -186,7 +205,8 @@ docker-compose -f docker-compose.local.yml logs -f
 ## 🆘 **Suporte**
 
 Se precisar de ajuda:
+
 1. Verifique os logs: `docker-compose logs -f`
 2. Consulte este guia
-3. Verifique a documentação oficial: https://docs.workadventu.re/
+3. Verifique a documentação oficial: <https://docs.workadventu.re/>
 4. Entre em contato com a equipe de desenvolvimento

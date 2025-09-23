@@ -3,12 +3,14 @@
 ## ⚡ **Início Rápido**
 
 ### **Windows (PowerShell)**
+
 ```powershell
 # Executar script de início
 .\start-local.ps1
 ```
 
 ### **Linux/Mac (Bash)**
+
 ```bash
 # Executar script de início
 chmod +x start-local.sh
@@ -16,6 +18,7 @@ chmod +x start-local.sh
 ```
 
 ### **Manual (Docker Compose)**
+
 ```bash
 # Iniciar serviços
 docker-compose -f docker-compose.local.yml up -d
@@ -28,8 +31,8 @@ docker-compose -f docker-compose.local.yml ps
 
 ## 🌐 **Acesso**
 
-- **WorkAdventure**: http://localhost:8080
-- **Admin**: http://localhost:8080/admin
+- **WorkAdventure**: <http://localhost:8080>
+- **Admin**: <http://localhost:8080/admin>
 - **Banco PostgreSQL**: localhost:5432
 - **Redis**: localhost:6379
 
@@ -38,11 +41,13 @@ docker-compose -f docker-compose.local.yml ps
 ## 🎯 **Integrações Disponíveis**
 
 ### **✅ Funcionando**
+
 - **Excalidraw** - Desenho colaborativo
 - **Eraser** - Ferramenta de desenho
 - **Cards** - Sistema Kanban
 
 ### **❌ Requer Configuração**
+
 - **Google Docs** - Requer OAuth2
 - **Google Drive** - Requer OAuth2
 
@@ -51,11 +56,13 @@ docker-compose -f docker-compose.local.yml ps
 ## 🗺️ **Mapa AR Online**
 
 ### **Arquivos**
+
 - **Mapa**: `public/wa_map-interativo.tmj`
 - **Script**: `public/mapScript.js`
 - **Tilesets**: `public/tilesets/`
 
 ### **Comandos de Teste**
+
 - `/menu` - Menu principal
 - `/integrations` - Status das integrações
 - `/info` - Informações da empresa
@@ -65,6 +72,7 @@ docker-compose -f docker-compose.local.yml ps
 ## 🛠️ **Comandos Úteis**
 
 ### **Gerenciar Serviços**
+
 ```bash
 # Iniciar
 docker-compose -f docker-compose.local.yml up -d
@@ -83,6 +91,7 @@ docker-compose -f docker-compose.local.yml ps
 ```
 
 ### **Banco de Dados**
+
 ```bash
 # Conectar ao PostgreSQL
 docker exec -it wa-local-postgres psql -U wa_user -d workadventure_local
@@ -99,6 +108,7 @@ docker exec -i wa-local-postgres psql -U wa_user workadventure_local < backup.sq
 ## 🔍 **Solução de Problemas**
 
 ### **Problema: Serviços não iniciam**
+
 ```bash
 # Verificar logs
 docker-compose -f docker-compose.local.yml logs
@@ -112,6 +122,7 @@ sudo systemctl restart docker  # Linux
 ```
 
 ### **Problema: Porta 8080 ocupada**
+
 ```bash
 # Verificar processos na porta
 netstat -ano | findstr :8080  # Windows
@@ -123,6 +134,7 @@ kill -9 <PID>                  # Linux/Mac
 ```
 
 ### **Problema: Banco de dados não conecta**
+
 ```bash
 # Verificar status do PostgreSQL
 docker exec -it wa-local-postgres psql -U wa_user -d workadventure_local
@@ -138,6 +150,7 @@ docker-compose -f docker-compose.local.yml up -d
 ## 📊 **Monitoramento**
 
 ### **Verificar Recursos**
+
 ```bash
 # Uso de CPU e RAM
 docker stats
@@ -154,12 +167,14 @@ docker-compose -f docker-compose.local.yml logs -f
 ## 🎉 **Próximos Passos**
 
 ### **Para Produção**
+
 1. Configurar Google OAuth2
 2. Usar servidor cloud
 3. Configurar SSL
 4. Configurar backup automatizado
 
 ### **Para Desenvolvimento**
+
 1. Testar todas as integrações
 2. Personalizar mapa AR Online
 3. Adicionar novas funcionalidades
@@ -179,7 +194,8 @@ docker-compose -f docker-compose.local.yml logs -f
 ## 🆘 **Suporte**
 
 Se precisar de ajuda:
+
 1. Verifique os logs: `docker-compose logs -f`
 2. Consulte este guia
-3. Verifique a documentação oficial: https://docs.workadventu.re/
+3. Verifique a documentação oficial: <https://docs.workadventu.re/>
 4. Entre em contato com a equipe de desenvolvimento
