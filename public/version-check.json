@@ -1,0 +1,16 @@
+{
+  "version": "2.0",
+  "status": "updated",
+  "timestamp": "2024-12-19T10:00:00Z",
+  "features": [
+    "12 departamentos específicos",
+    "6 áreas de convivência", 
+    "4 zonas especiais",
+    "Sistema de corredores funcional",
+    "Interações por sala",
+    "Comandos de chat",
+    "Integrações básicas"
+  ],
+  "map_file": "wa_map-interativo.tmj",
+  "script_file": "mapScript.js"
+}
