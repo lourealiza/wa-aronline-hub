@@ -34,6 +34,8 @@ WA.onInit().then(() => {
       showCompanyNews();
     } else if (text === '/info') {
       showCompanyInfo();
+    } else if (text === '/integrations') {
+      showIntegrationsInfo();
     }
   });
 
@@ -47,7 +49,8 @@ WA.onInit().then(() => {
       '/meeting - Salas de reunião\n' +
       '/news - Notícias da empresa\n' +
       '/weather - Clima atual\n' +
-      '/info - Informações da AR Online\n\n' +
+      '/info - Informações da AR Online\n' +
+      '/integrations - Status das integrações\n\n' +
       '📞 COMANDOS DE COMUNICAÇÃO:\n' +
       '/call [pessoa] - Chamar alguém\n' +
       'Pessoas: lou, milena, caroline, dev, marketing\n\n' +
@@ -67,8 +70,41 @@ WA.onInit().then(() => {
       '🤖 Produto principal: ARIA (Chatbot inteligente)\n' +
       '📈 Fundada em: 2020\n' +
       '👥 Equipe: 25+ profissionais\n' +
-      '🌐 Site: www.ar-online.com.br',
+      '🌐 Site: www.ar-online.com.br\n\n' +
+      '🔗 INTEGRAÇÕES DISPONÍVEIS:\n' +
+      '📄 Google Docs - Documentos colaborativos\n' +
+      '💾 Google Drive - Compartilhamento de arquivos\n' +
+      '🎨 Excalidraw - Desenho colaborativo\n' +
+      '💡 Para habilitar: Configure OAuth2 no servidor',
       'Sistema Info'
+    );
+  }
+
+  function showIntegrationsInfo() {
+    WA.chat.sendChatMessage(
+      '🔗 INTEGRAÇÕES WORKADVENTURE - AR Online\n\n' +
+      '📄 GOOGLE DOCS:\n' +
+      '• Status: Desabilitada (requer configuração OAuth2)\n' +
+      '• Uso: Documentos colaborativos em tempo real\n' +
+      '• Configuração: Servidor + credenciais Google\n\n' +
+      '💾 GOOGLE DRIVE:\n' +
+      '• Status: Desabilitada (requer configuração OAuth2)\n' +
+      '• Uso: Compartilhamento de arquivos\n' +
+      '• Configuração: Servidor + credenciais Google\n\n' +
+      '🎨 EXCALIDRAW:\n' +
+      '• Status: Desabilitada (requer servidor)\n' +
+      '• Uso: Desenho colaborativo e brainstorming\n' +
+      '• Configuração: Backend + banco de dados\n\n' +
+      '🧹 BORRACHA (ERASER):\n' +
+      '• Status: Desabilitada (requer servidor)\n' +
+      '• Uso: Desenho colaborativo\n' +
+      '• Configuração: Servidor de desenho\n\n' +
+      '📋 CARDS:\n' +
+      '• Status: Desabilitada (requer banco de dados)\n' +
+      '• Uso: Sistema Kanban colaborativo\n' +
+      '• Configuração: Banco de dados + servidor\n\n' +
+      '💡 Para habilitar integrações, configure um servidor WorkAdventure completo.',
+      'Sistema Integrações'
     );
   }
 

@@ -1,0 +1,29 @@
+{
+  "integrations": {
+    "googleDocs": {
+      "enabled": true,
+      "description": "Integração com Google Docs para documentos colaborativos"
+    },
+    "googleDrive": {
+      "enabled": true,
+      "description": "Integração com Google Drive para compartilhamento de arquivos"
+    },
+    "excalidraw": {
+      "enabled": true,
+      "description": "Ferramenta de desenho colaborativo para brainstorming"
+    },
+    "eraser": {
+      "enabled": false,
+      "description": "Ferramenta de desenho (requer configuração adicional)"
+    },
+    "cards": {
+      "enabled": false,
+      "description": "Sistema de cartões Kanban (requer banco de dados)"
+    }
+  },
+  "company": {
+    "name": "AR Online",
+    "domain": "ar-online.com.br",
+    "googleWorkspace": true
+  }
+}
