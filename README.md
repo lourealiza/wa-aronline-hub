@@ -6,6 +6,7 @@ Este repositório contém os arquivos necessários para configurar e publicar o 
 
 `
 wa-aronline-hub/
+
 - public/
   - images/                 # Ícones e imagens públicas
   - wa_map-interativo.tmj   # Mapa padrão (Tiled JSON - TMJ)
@@ -21,21 +22,22 @@ wa-aronline-hub/
 
 ## Como Rodar Localmente
 
-- Desenvolvimento: 
-pm run start → abre em http://localhost:5173/
-- Preview de produção: 
-pm run build e 
-pm run prod → http://localhost:4173/
+- Desenvolvimento:
+pm run start → abre em <http://localhost:5173/>
+- Preview de produção:
+pm run build e
+pm run prod → <http://localhost:4173/>
 
 ## Publicação (GitHub Pages)
 
 O projeto está configurado para deploy automático no GitHub Pages:
 
-- **Página principal**: https://lourealiza.github.io/wa-aronline-hub/
-- **Mapa direto**: https://lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
-- **WorkAdventure (global)**: https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
+- **Página principal**: <https://lourealiza.github.io/wa-aronline-hub/>
+- **Mapa direto**: <https://lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj>
+- **WorkAdventure (global)**: <https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj>
 
 ### Deploy Automático
+
 - Push para branch `master` → Deploy automático via GitHub Actions
 - Build otimizado com Vite
 - Arquivos estáticos servidos diretamente
@@ -49,12 +51,14 @@ O projeto está configurado para deploy automático no GitHub Pages:
 ## Otimização de Mapas (build)
 
 O projeto usa wa-map-optimizer-vite durante o build:
+
 - Otimiza tilesets e gera versões empacotadas dos mapas para o diretório dist/.
 - Para que a otimização funcione, o TMJ deve referenciar corretamente o tileset (ex.: ../tilesets/WA_Room_Builder.png).
 
 ## Contribuição
 
 Contribuições são bem-vindas! Passos sugeridos:
+
 - Fork do repositório
 - Nova branch: git checkout -b minha-nova-feature
 - Commits claros e objetivos
