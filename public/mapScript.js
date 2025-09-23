@@ -3,9 +3,97 @@
 WA.onInit().then(() => {
   // Mensagem de boas-vindas
   WA.chat.sendChatMessage(
-    'Bem-vindo ao Hub da AR Online! Explore nosso espaço interativo.',
+    'Bem-vindo ao Hub da AR Online! Digite /menu para ver as opções disponíveis.',
     'AR Online Bot'
   );
+
+  // Menu de construção e interações
+  let buildMode = false;
+  let selectedTool = null;
+
+  // Comandos de chat
+  WA.chat.onChatMessage((message) => {
+    const text = message.text.toLowerCase();
+    
+    if (text === '/menu') {
+      showMainMenu();
+    } else if (text === '/build') {
+      toggleBuildMode();
+    } else if (text === '/help') {
+      showHelp();
+    } else if (text.startsWith('/tool ')) {
+      const tool = text.split(' ')[1];
+      selectTool(tool);
+    } else if (text === '/clear') {
+      clearMap();
+    }
+  });
+
+  function showMainMenu() {
+    WA.chat.sendChatMessage(
+      '🏢 MENU PRINCIPAL - AR Online Hub\n' +
+      '📋 Comandos disponíveis:\n' +
+      '/build - Ativar/desativar modo construção\n' +
+      '/tool [nome] - Selecionar ferramenta\n' +
+      '/clear - Limpar mapa\n' +
+      '/help - Ajuda detalhada\n' +
+      '🎯 Ferramentas: wall, floor, furniture, decoration',
+      'Sistema'
+    );
+  }
+
+  function toggleBuildMode() {
+    buildMode = !buildMode;
+    WA.chat.sendChatMessage(
+      `🔨 Modo construção: ${buildMode ? 'ATIVADO' : 'DESATIVADO'}`,
+      'Sistema'
+    );
+    
+    if (buildMode) {
+      WA.chat.sendChatMessage(
+        'Use /tool [wall/floor/furniture/decoration] para selecionar ferramenta',
+        'Sistema'
+      );
+    }
+  }
+
+  function selectTool(tool) {
+    if (!buildMode) {
+      WA.chat.sendChatMessage('Ative o modo construção primeiro com /build', 'Sistema');
+      return;
+    }
+
+    const tools = ['wall', 'floor', 'furniture', 'decoration'];
+    if (tools.includes(tool)) {
+      selectedTool = tool;
+      WA.chat.sendChatMessage(`🔧 Ferramenta selecionada: ${tool}`, 'Sistema');
+    } else {
+      WA.chat.sendChatMessage('Ferramenta inválida. Use: wall, floor, furniture, decoration', 'Sistema');
+    }
+  }
+
+  function showHelp() {
+    WA.chat.sendChatMessage(
+      '📖 AJUDA - Sistema de Construção\n' +
+      '1. Digite /build para ativar o modo construção\n' +
+      '2. Use /tool [nome] para selecionar ferramenta\n' +
+      '3. Clique no mapa para colocar elementos\n' +
+      '4. Use /clear para limpar tudo\n' +
+      '5. Digite /menu para ver comandos\n\n' +
+      '🎨 Ferramentas disponíveis:\n' +
+      '• wall - Paredes e divisórias\n' +
+      '• floor - Pisos e carpetes\n' +
+      '• furniture - Mesas, cadeiras, equipamentos\n' +
+      '• decoration - Plantas, quadros, decorações',
+      'Sistema'
+    );
+  }
+
+  function clearMap() {
+    WA.chat.sendChatMessage('🧹 Limpando mapa...', 'Sistema');
+    // Aqui você pode implementar a lógica para limpar o mapa
+    WA.chat.sendChatMessage('Mapa limpo! Use /build para começar a construir.', 'Sistema');
+  }
 
   // Exemplos de interações por nome de camada/objeto no Tiled
   // Ajuste os nomes abaixo para corresponder exatamente aos nomes no TMJ/Tiled
