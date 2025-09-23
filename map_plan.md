@@ -7,12 +7,14 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🏢 **Estrutura do Escritório**
 
 ### **Área Central - Lobby/Recepção**
+
 - **Coordenadas**: x=20..59, y=30..44 (largura 40, altura 15)
 - **Cor**: Azul vibrante (tile 725)
 - **Função**: Circulação principal e recepção
 - **Elementos**: Mesas de recepção, plantas decorativas, área de espera
 
 ### **Ala Esquerda - Gestão & CEO**
+
 - **Coordenadas**: x=4..18, y=26..48 (largura 15, altura 23)
 - **Cor**: Cinza claro (tile 2)
 - **Subdivisões**:
@@ -24,6 +26,7 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
   - **Vendas**: x=9..13, y=36..40 (5x5)
 
 ### **Ala Direita - Operações**
+
 - **Coordenadas**: x=61..75, y=26..48 (largura 15, altura 23)
 - **Cor**: Cinza claro (tile 3)
 - **Subdivisões**:
@@ -35,6 +38,7 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
   - **Suporte**: x=66..70, y=36..40 (5x5)
 
 ### **Parte Superior - Convivência & Eventos**
+
 - **Coordenadas**: x=10..70, y=6..22 (largura 61, altura 17)
 - **Cor**: Verde suave (tile 4)
 - **Subdivisões**:
@@ -48,10 +52,12 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🚶 **Sistema de Corredores**
 
 ### **Espinha Central**
+
 - **Coordenadas**: x=39..40, y=22..52 (2 tiles de largura)
 - **Função**: Conecta todas as áreas principais
 
 ### **Conectores**
+
 - **Superior**: y=22..24, x=38..41 (Convivência ↔ Lobby)
 - **Esquerdo**: y=26..27, x=19..20 (Lobby ↔ Gestão)
 - **Direito**: y=26..27, x=59..60 (Lobby ↔ Operações)
@@ -59,6 +65,7 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🏗️ **Camadas do Mapa**
 
 ### **Camadas Estruturais**
+
 1. **floor** - Piso base com cores por setor
 2. **walls** - Paredes e divisórias
 3. **collision** - Colisões (invisível)
@@ -66,6 +73,7 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 5. **decoration** - Plantas e decorações
 
 ### **Camadas Funcionais**
+
 6. **start** - Ponto de spawn (centro do lobby)
 7. **PrivateZones** - Zonas privadas por departamento
 8. **zones** - Zonas especiais (Café, Impressão, etc.)
@@ -73,16 +81,19 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🎯 **Zonas Especiais**
 
 ### **Áreas de Convivência**
+
 - **Café**: Espaço para conversas informais
 - **Jardim Virtual**: Área relaxante com plantas
 - **Lounge**: Espaço de descanso
 
 ### **Áreas de Trabalho**
+
 - **Impressão**: Centro de impressão e documentos
 - **Arquivo**: Documentação e arquivos
 - **Auditório**: Eventos e apresentações
 
 ### **Salas de Reunião**
+
 - **Sala A**: Reuniões pequenas (4-6 pessoas)
 - **Sala B**: Reuniões médias (6-8 pessoas)
 - **Auditório**: Eventos grandes (até 50 pessoas)
@@ -103,6 +114,7 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🔧 **Elementos Interativos**
 
 ### **Hotspots por Sala**
+
 - **CEO**: Agendamentos, reuniões executivas
 - **RH**: Vagas, treinamentos, avaliações
 - **Marketing**: Campanhas, métricas, eventos
@@ -114,6 +126,7 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 - **Arquivo**: Busca, contratos, histórico
 
 ### **Comandos de Chat**
+
 - `/menu` - Menu principal
 - `/integrations` - Status das integrações
 - `/info` - Informações da empresa
@@ -126,11 +139,13 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 📊 **Métricas e Monitoramento**
 
 ### **Áreas de Tráfego**
+
 - Lobby Central: Ponto de maior circulação
 - Corredores: Fluxo entre departamentos
 - Café: Área de convivência mais visitada
 
 ### **Zonas Privadas**
+
 - CEO: Acesso restrito
 - RH: Acesso controlado
 - Desenvolvimento: Acesso técnico
@@ -139,18 +154,21 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🚀 **Funcionalidades Implementadas**
 
 ### **Navegação**
+
 - ✅ Sistema de corredores
 - ✅ Portas entre salas
 - ✅ Ponto de spawn central
 - ✅ Zonas de colisão
 
 ### **Interações**
+
 - ✅ Mensagens por sala
 - ✅ Comandos de chat
 - ✅ Sistema de menu
 - ✅ Informações departamentais
 
 ### **Integrações**
+
 - ✅ Excalidraw (desenho colaborativo)
 - ✅ Eraser (ferramenta de desenho)
 - ✅ Cards (sistema Kanban)
@@ -159,18 +177,21 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 📈 **Próximas Implementações**
 
 ### **Fase 1 - Melhorias Visuais**
+
 - [ ] Adicionar mais mobiliário
 - [ ] Implementar decorações específicas
 - [ ] Criar hotspots visuais
 - [ ] Adicionar NPCs informativos
 
 ### **Fase 2 - Funcionalidades Avançadas**
+
 - [ ] Sistema de agendamento
 - [ ] Chat privado por departamento
 - [ ] Sistema de notificações
 - [ ] Integração com calendário
 
 ### **Fase 3 - Gamificação**
+
 - [ ] Sistema de conquistas
 - [ ] Ranking de participação
 - [ ] Eventos especiais
@@ -179,18 +200,21 @@ O mapa do WorkAdventure da AR Online foi projetado para ser um escritório virtu
 ## 🔍 **Validação e Testes**
 
 ### **Testes de Navegação**
+
 - [ ] Spawn no lobby central
 - [ ] Acesso a todas as salas
 - [ ] Colisões funcionando
 - [ ] Portas acessíveis
 
 ### **Testes de Interação**
+
 - [ ] Mensagens por sala
 - [ ] Comandos de chat
 - [ ] Menu principal
 - [ ] Integrações básicas
 
 ### **Testes de Performance**
+
 - [ ] Carregamento do mapa
 - [ ] Responsividade
 - [ ] Múltiplos usuários
