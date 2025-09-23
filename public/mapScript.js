@@ -11,98 +11,68 @@ WA.onInit().then(() => {
   let buildMode = false;
   let selectedTool = null;
 
-  // Comandos de chat
+  // Comandos de chat - Sistema simplificado para WorkAdventure
   WA.chat.onChatMessage((message) => {
     const text = message.text.toLowerCase();
     
-    if (text === '/menu') {
+    if (text === '/menu' || text === '/help') {
       showMainMenu();
-    } else if (text === '/build') {
-      toggleBuildMode();
-    } else if (text === '/help') {
-      showHelp();
-    } else if (text.startsWith('/tool ')) {
-      const tool = text.split(' ')[1];
-      selectTool(tool);
-    } else if (text === '/clear') {
-      clearMap();
+    } else if (text === '/status') {
+      showCompanyStatus();
+    } else if (text === '/team') {
+      showTeamInfo();
+    } else if (text === '/projects') {
+      showActiveProjects();
+    } else if (text === '/meeting') {
+      showMeetingRooms();
+    } else if (text.startsWith('/call ')) {
+      const person = text.split(' ')[1];
+      callPerson(person);
+    } else if (text === '/weather') {
+      showWeather();
+    } else if (text === '/news') {
+      showCompanyNews();
+    } else if (text === '/info') {
+      showCompanyInfo();
     }
   });
 
   function showMainMenu() {
     WA.chat.sendChatMessage(
       '🏢 MENU PRINCIPAL - AR Online Hub\n' +
-      '📋 COMANDOS DE CONSTRUÇÃO:\n' +
-      '/build - Ativar/desativar modo construção\n' +
-      '/tool [nome] - Selecionar ferramenta\n' +
-      '/clear - Limpar mapa\n' +
-      '/help - Ajuda detalhada\n\n' +
       '📊 COMANDOS DE INFORMAÇÃO:\n' +
       '/status - Status da empresa\n' +
       '/team - Informações da equipe\n' +
       '/projects - Projetos ativos\n' +
       '/meeting - Salas de reunião\n' +
       '/news - Notícias da empresa\n' +
-      '/weather - Clima atual\n\n' +
+      '/weather - Clima atual\n' +
+      '/info - Informações da AR Online\n\n' +
       '📞 COMANDOS DE COMUNICAÇÃO:\n' +
       '/call [pessoa] - Chamar alguém\n' +
-      '🎯 Ferramentas: wall, floor, furniture, decoration',
+      'Pessoas: lou, milena, caroline, dev, marketing\n\n' +
+      '🔨 CONSTRUÇÃO:\n' +
+      'Use o menu "Mapa" → "Editor de mapa" para construir\n' +
+      'Navegue pelas salas para ver informações específicas',
       'Sistema'
     );
   }
 
-  function toggleBuildMode() {
-    buildMode = !buildMode;
+  function showCompanyInfo() {
     WA.chat.sendChatMessage(
-      `🔨 Modo construção: ${buildMode ? 'ATIVADO' : 'DESATIVADO'}`,
-      'Sistema'
-    );
-    
-    if (buildMode) {
-      WA.chat.sendChatMessage(
-        'Use /tool [wall/floor/furniture/decoration] para selecionar ferramenta',
-        'Sistema'
-      );
-    }
-  }
-
-  function selectTool(tool) {
-    if (!buildMode) {
-      WA.chat.sendChatMessage('Ative o modo construção primeiro com /build', 'Sistema');
-      return;
-    }
-
-    const tools = ['wall', 'floor', 'furniture', 'decoration'];
-    if (tools.includes(tool)) {
-      selectedTool = tool;
-      WA.chat.sendChatMessage(`🔧 Ferramenta selecionada: ${tool}`, 'Sistema');
-    } else {
-      WA.chat.sendChatMessage('Ferramenta inválida. Use: wall, floor, furniture, decoration', 'Sistema');
-    }
-  }
-
-  function showHelp() {
-    WA.chat.sendChatMessage(
-      '📖 AJUDA - Sistema de Construção\n' +
-      '1. Digite /build para ativar o modo construção\n' +
-      '2. Use /tool [nome] para selecionar ferramenta\n' +
-      '3. Clique no mapa para colocar elementos\n' +
-      '4. Use /clear para limpar tudo\n' +
-      '5. Digite /menu para ver comandos\n\n' +
-      '🎨 Ferramentas disponíveis:\n' +
-      '• wall - Paredes e divisórias\n' +
-      '• floor - Pisos e carpetes\n' +
-      '• furniture - Mesas, cadeiras, equipamentos\n' +
-      '• decoration - Plantas, quadros, decorações',
-      'Sistema'
+      '🏢 AR ONLINE - Informações da Empresa\n' +
+      '📍 Localização: São Paulo, SP\n' +
+      '🎯 Missão: Transformar comunicação empresarial\n' +
+      '💼 Serviços: AR-Email, AR-SMS, AR-WhatsApp, AR-Voz\n' +
+      '🤖 Produto principal: ARIA (Chatbot inteligente)\n' +
+      '📈 Fundada em: 2020\n' +
+      '👥 Equipe: 25+ profissionais\n' +
+      '🌐 Site: www.ar-online.com.br',
+      'Sistema Info'
     );
   }
 
-  function clearMap() {
-    WA.chat.sendChatMessage('🧹 Limpando mapa...', 'Sistema');
-    // Aqui você pode implementar a lógica para limpar o mapa
-    WA.chat.sendChatMessage('Mapa limpo! Use /build para começar a construir.', 'Sistema');
-  }
+  // Sistema de construção removido - usar Editor de Mapa do WorkAdventure
 
   // ===== SISTEMA DE NOTIFICAÇÕES E COMANDOS AVANÇADOS =====
   
@@ -267,15 +237,90 @@ WA.onInit().then(() => {
     }
   });
 
-  // ===== INTERAÇÕES POR DEPARTAMENTO =====
+  // ===== INTERAÇÕES POR SETOR =====
   
   // LOBBY CENTRAL - Recepção e informações gerais
   WA.room.onEnterLayer('Lobby Central').subscribe(() => {
     WA.chat.sendChatMessage(
       '🏢 Bem-vindo ao Lobby Central da AR Online!\n' +
-      'Aqui você encontra informações sobre a empresa e pode acessar todos os departamentos.\n' +
-      'Digite /menu para ver opções disponíveis.',
+      '📍 Área Central - Circulação principal\n' +
+      '🎯 Acesso a todos os setores da empresa\n' +
+      '💡 Digite /menu para ver comandos disponíveis\n' +
+      '🚶 Navegue pelos corredores para acessar outras áreas',
       'Recepção AR Online'
+    );
+  });
+
+  // GESTÃO & CEO - Área administrativa
+  WA.room.onEnterLayer('Gestão & CEO').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '👔 Área de Gestão & CEO\n' +
+      '🏢 CEO, Projetos, RH, Processos/Inovação\n' +
+      '📊 Gestão estratégica e administrativa\n' +
+      '💼 Decisões executivas e planejamento\n' +
+      '🎯 Subdivisões serão implementadas em breve',
+      'Sistema Gestão'
+    );
+  });
+
+  // OPERAÇÕES - Área operacional
+  WA.room.onEnterLayer('Operações').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '⚙️ Área de Operações\n' +
+      '💼 Comercial (4 salas), Marketing, Devs, Suporte\n' +
+      '🚀 Execução de projetos e atendimento\n' +
+      '📈 Operações comerciais e técnicas\n' +
+      '🎯 Subdivisões serão implementadas em breve',
+      'Sistema Operações'
+    );
+  });
+
+  // CONVIVÊNCIA & EVENTOS - Área de relaxamento
+  WA.room.onEnterLayer('Convivência & Eventos').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🌿 Área de Convivência & Eventos\n' +
+      '🎭 Auditório, Jardim Virtual, Lounge/Copa\n' +
+      '☕ Espaço para relaxamento e eventos\n' +
+      '🎉 Celebrações e treinamentos\n' +
+      '🎯 Subdivisões serão implementadas em breve',
+      'Sistema Convivência'
+    );
+  });
+
+  // CORREDORES - Áreas de circulação
+  WA.room.onEnterLayer('Espinha Central').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🚶 Corredor Principal - Espinha Central\n' +
+      '↕️ Conecta Convivência ↔ Lobby ↔ Alas\n' +
+      '📍 Navegação principal do escritório',
+      'Sistema Navegação'
+    );
+  });
+
+  WA.room.onEnterLayer('Conector Superior').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🔗 Conector Superior\n' +
+      '↕️ Liga Convivência ↔ Lobby\n' +
+      '📍 Acesso à área de eventos',
+      'Sistema Navegação'
+    );
+  });
+
+  WA.room.onEnterLayer('Conector Esquerdo').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🔗 Conector Esquerdo\n' +
+      '↔️ Liga Lobby ↔ Gestão & CEO\n' +
+      '📍 Acesso à área administrativa',
+      'Sistema Navegação'
+    );
+  });
+
+  WA.room.onEnterLayer('Conector Direito').subscribe(() => {
+    WA.chat.sendChatMessage(
+      '🔗 Conector Direito\n' +
+      '↔️ Liga Lobby ↔ Operações\n' +
+      '📍 Acesso à área operacional',
+      'Sistema Navegação'
     );
   });
 
