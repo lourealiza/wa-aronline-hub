@@ -1,0 +1,85 @@
+version: '3.8'
+services:
+  # Banco de Dados PostgreSQL
+  postgres:
+    image: postgres:13
+    container_name: ar-online-postgres
+    environment:
+      POSTGRES_DB: workadventure_aronline
+      POSTGRES_USER: aronline_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Redis para Cache
+  redis:
+    image: redis:6-alpine
+    container_name: ar-online-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  # WorkAdventure Backend
+  workadventure:
+    image: thecodingmachine/workadventure:latest
+    container_name: ar-online-workadventure
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      # Banco de Dados
+      - DATABASE_URL=postgresql://aronline_user:${POSTGRES_PASSWORD}@postgres:5432/workadventure_aronline
+      - REDIS_URL=redis://redis:6379
+      
+      # Google OAuth2
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      
+      # JWT e Segurança
+      - JWT_SECRET=${JWT_SECRET}
+      - SECRET_KEY=${SECRET_KEY}
+      
+      # Domínio AR Online
+      - DOMAIN=workadventure.ar-online.com.br
+      - ADMIN_API_URL=https://workadventure.ar-online.com.br/admin
+      
+      # Integrações
+      - ENABLE_GOOGLE_DOCS=true
+      - ENABLE_GOOGLE_DRIVE=true
+      - ENABLE_EXCALIDRAW=true
+      - ENABLE_ERASER=true
+      - ENABLE_CARDS=true
+      
+      # Configurações da Empresa
+      - COMPANY_NAME=AR Online
+      - COMPANY_EMAIL=contato@ar-online.com.br
+      - COMPANY_WEBSITE=https://www.ar-online.com.br
+      
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    volumes:
+      - ./maps:/app/maps
+      - ./uploads:/app/uploads
+
+  # Nginx (Proxy Reverso)
+  nginx:
+    image: nginx:alpine
+    container_name: ar-online-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - workadventure
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
