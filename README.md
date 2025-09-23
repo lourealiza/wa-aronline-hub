@@ -29,8 +29,16 @@ pm run prod → http://localhost:4173/
 
 ## Publicação (GitHub Pages)
 
-- Mapa direto: https://lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
-- WorkAdventure (global): https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
+O projeto está configurado para deploy automático no GitHub Pages:
+
+- **Página principal**: https://lourealiza.github.io/wa-aronline-hub/
+- **Mapa direto**: https://lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
+- **WorkAdventure (global)**: https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-interativo.tmj
+
+### Deploy Automático
+- Push para branch `master` → Deploy automático via GitHub Actions
+- Build otimizado com Vite
+- Arquivos estáticos servidos diretamente
 
 ## Mapa Padrão e Scripts Dinâmicos
 

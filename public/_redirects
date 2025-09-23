@@ -1,2 +1,5 @@
 /*.json    /$1.json   200
 /*.tmj     /$1.tmj    200
+/*.js      /$1.js     200
+/*.png     /$1.png    200
+/*.svg     /$1.svg    200
