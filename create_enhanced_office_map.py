@@ -157,7 +157,7 @@ def create_enhanced_office_map(
         "tileheight": tile_size,
         "tilecount": 1000,
         "columns": 25,
-        "image": "../tilesets/WA_Room_Builder.png",
+        "image": "tilesets/WA_Room_Builder.png",
         "imagewidth": 800,
         "imageheight": 1280,
     }
