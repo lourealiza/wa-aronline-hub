@@ -1,0 +1,33 @@
+{
+  "automappingRulesFile": "",
+  "commands": [],
+  "folders": [
+    {
+      "folder": "./public",
+      "name": "AR Online Maps",
+      "projectRoot": true
+    }
+  ],
+  "extensionsPath": "",
+  "propertyTypes": [
+    {
+      "id": 1,
+      "name": "WorkAdventure Properties",
+      "type": "class",
+      "members": [
+        {
+          "id": 1,
+          "name": "script",
+          "type": "string",
+          "value": "mapScript.js"
+        },
+        {
+          "id": 2,
+          "name": "mapName",
+          "type": "string",
+          "value": "AR Online - Escritório Virtual"
+        }
+      ]
+    }
+  ]
+}
