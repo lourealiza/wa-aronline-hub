@@ -307,7 +307,16 @@
             <div class="main-editor">
                 <div class="map-preview">
                     <h4>🗺️ Visualização do Mapa</h4>
-                    <iframe id="mapPreview" src="https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-visual-rooms.tmj"></iframe>
+                    <div id="mapContainer">
+                        <iframe id="mapPreview" src="https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-visual-working.tmj" 
+                                onload="hideMapError()" onerror="showMapError()"></iframe>
+                        <div id="mapError" style="display: none; padding: 20px; text-align: center; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px;">
+                            <h4>⚠️ Erro ao carregar mapa</h4>
+                            <p>O mapa pode estar sendo atualizado. Tente novamente em alguns segundos.</p>
+                            <button onclick="reloadMap()" class="button" style="background-color: #007bff;">🔄 Recarregar Mapa</button>
+                            <p><small>URL: <a href="https://play.workadventu.re/_/global/lourealiza.github.io/wa-aronline-hub/wa_map-visual-working.tmj" target="_blank">Abrir em nova aba</a></small></p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="section">
@@ -393,6 +402,23 @@
         ];
 
         let selectedRoom = null;
+
+        // Funções para gerenciar erro do mapa
+        function showMapError() {
+            document.getElementById('mapError').style.display = 'block';
+            document.getElementById('mapPreview').style.display = 'none';
+        }
+        
+        function hideMapError() {
+            document.getElementById('mapError').style.display = 'none';
+            document.getElementById('mapPreview').style.display = 'block';
+        }
+        
+        function reloadMap() {
+            const iframe = document.getElementById('mapPreview');
+            iframe.src = iframe.src;
+            hideMapError();
+        }
 
         // Inicializar editor
         function initEditor() {
