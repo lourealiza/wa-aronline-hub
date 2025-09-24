@@ -392,3 +392,4 @@ if __name__ == "__main__":
     
     print("✅ Todos os mapas corrigidos com diferenças visuais!")
     print("🎯 Agora os mapas terão aparências diferentes no WorkAdventure!")
+
