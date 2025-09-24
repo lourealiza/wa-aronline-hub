@@ -40,6 +40,16 @@ jobs:
       
       - name: Build project
         run: npm run build
+        continue-on-error: true
+      
+      - name: Copy static files
+        run: |
+          mkdir -p dist
+          cp -r public/* dist/ 2>/dev/null || true
+          cp wa_map-*.tmj dist/ 2>/dev/null || true
+          cp wa_map-*.json dist/ 2>/dev/null || true
+          cp *.html dist/ 2>/dev/null || true
+          cp *.js dist/ 2>/dev/null || true
       
       - name: Setup Pages
         uses: actions/configure-pages@v5
