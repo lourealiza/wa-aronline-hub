@@ -1,0 +1,211 @@
+{
+  "type": "map",
+  "version": "1.10",
+  "tiledversion": "1.10.2",
+  "orientation": "orthogonal",
+  "renderorder": "right-down",
+  "infinite": false,
+  "width": 12,
+  "height": 8,
+  "tilewidth": 32,
+  "tileheight": 32,
+  "compressionlevel": -1,
+  "nextlayerid": 4,
+  "nextobjectid": 10,
+  "properties": [
+    {
+      "name": "mapName",
+      "type": "string",
+      "value": "AR Online - Mapa Funcional"
+    },
+    {
+      "name": "script",
+      "type": "string",
+      "value": "mapScript.js"
+    }
+  ],
+  "tilesets": [
+    {
+      "firstgid": 1,
+      "name": "WA_Room_Builder",
+      "tilewidth": 32,
+      "tileheight": 32,
+      "tilecount": 1000,
+      "columns": 25,
+      "image": "tilesets/WA_Room_Builder.png",
+      "imagewidth": 800,
+      "imageheight": 1280
+    }
+  ],
+  "layers": [
+    {
+      "id": 1,
+      "name": "floor",
+      "type": "tilelayer",
+      "width": 12,
+      "height": 8,
+      "opacity": 1,
+      "visible": true,
+      "data": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": 2,
+      "name": "start",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 1,
+          "name": "spawn",
+          "type": "spawn",
+          "x": 128,
+          "y": 96,
+          "width": 32,
+          "height": 32,
+          "visible": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "zones",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "objects": [
+        {
+          "id": 2,
+          "name": "Lobby",
+          "type": "common",
+          "x": 0,
+          "y": 0,
+          "width": 192,
+          "height": 128,
+          "visible": true,
+          "properties": [
+            {
+              "name": "description",
+              "type": "string",
+              "value": "Área central de recepção"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "CEO",
+          "type": "department",
+          "x": 192,
+          "y": 0,
+          "width": 192,
+          "height": 128,
+          "visible": true,
+          "properties": [
+            {
+              "name": "description",
+              "type": "string",
+              "value": "Gabinete executivo"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
