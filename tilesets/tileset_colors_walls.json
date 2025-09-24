@@ -1,0 +1,18 @@
+
+{
+ "columns": 4,
+ "image": "tileset_colors_walls.png",
+ "imageheight": 256,
+ "imagewidth": 128,
+ "margin": 0,
+ "name": "tileset_colors_walls",
+ "spacing": 0,
+ "tilecount": 10,
+ "tileheight": 32,
+ "tilewidth": 32,
+ "tiledversion": "1.9.2",
+ "type": "tileset",
+ "version": "1.9"
+}
+
+
