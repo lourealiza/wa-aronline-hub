@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Criar mapa WorkAdventure com divisões visuais usando tiles reais
+Criar mapa funcional com divisões visuais que funciona no WorkAdventure
 """
 
 import json
@@ -9,112 +9,111 @@ import os
 
 def create_working_visual_map():
     # Configurações do mapa
-    width_tiles = 80
-    height_tiles = 60
+    width_tiles = 16
+    height_tiles = 12
     tile_size = 32
     
-    # Dados das salas com tiles reais do WA_Room_Builder
-    rooms = {
-        "Lobby Central": {"x": 20, "y": 30, "w": 40, "h": 15, "floor_tile": 1, "wall_tile": 2},
-        "CEO": {"x": 4, "y": 26, "w": 5, "h": 5, "floor_tile": 3, "wall_tile": 4},
-        "RH": {"x": 9, "y": 26, "w": 5, "h": 5, "floor_tile": 3, "wall_tile": 4},
-        "Marketing": {"x": 61, "y": 26, "w": 5, "h": 5, "floor_tile": 5, "wall_tile": 6},
-        "Desenvolvimento": {"x": 61, "y": 31, "w": 5, "h": 5, "floor_tile": 5, "wall_tile": 6},
-        "Auditório": {"x": 10, "y": 6, "w": 16, "h": 7, "floor_tile": 7, "wall_tile": 8},
-        "Café": {"x": 41, "y": 6, "w": 15, "h": 7, "floor_tile": 9, "wall_tile": 10},
-        "Impressão": {"x": 56, "y": 6, "w": 8, "h": 7, "floor_tile": 11, "wall_tile": 12},
-        "Arquivo": {"x": 26, "y": 6, "w": 8, "h": 7, "floor_tile": 13, "wall_tile": 14},
-    }
-    
     # Criar camada de piso base
-    floor_data = [1] * (width_tiles * height_tiles)  # Tile 1 = piso padrão
+    floor_data = [1] * (width_tiles * height_tiles)
     
-    # Criar camada de salas com diferentes pisos
-    rooms_data = [0] * (width_tiles * height_tiles)  # 0 = vazio
+    # Criar camada de salas com diferentes tiles
+    rooms_data = [0] * (width_tiles * height_tiles)
     
-    # Preencher salas com pisos diferentes
-    for room_name, room in rooms.items():
-        for y in range(room["y"], room["y"] + room["h"]):
-            for x in range(room["x"], room["x"] + room["w"]):
-                if 0 <= x < width_tiles and 0 <= y < height_tiles:
-                    index = y * width_tiles + x
-                    rooms_data[index] = room["floor_tile"]
+    # Sala 1 - Lobby (tile 2)
+    for y in range(2, 8):
+        for x in range(2, 8):
+            index = y * width_tiles + x
+            rooms_data[index] = 2
     
-    # Criar camada de paredes/bordas
-    walls_data = [0] * (width_tiles * height_tiles)
+    # Sala 2 - CEO (tile 3)
+    for y in range(2, 8):
+        for x in range(10, 14):
+            index = y * width_tiles + x
+            rooms_data[index] = 3
     
-    # Adicionar bordas das salas
-    for room_name, room in rooms.items():
-        # Bordas horizontais
-        for x in range(room["x"], room["x"] + room["w"]):
-            if 0 <= x < width_tiles:
-                # Borda superior
-                if room["y"] > 0:
-                    walls_data[(room["y"] - 1) * width_tiles + x] = room["wall_tile"]
-                # Borda inferior
-                if room["y"] + room["h"] < height_tiles:
-                    walls_data[(room["y"] + room["h"]) * width_tiles + x] = room["wall_tile"]
-        
-        # Bordas verticais
-        for y in range(room["y"], room["y"] + room["h"]):
-            if 0 <= y < height_tiles:
-                # Borda esquerda
-                if room["x"] > 0:
-                    walls_data[y * width_tiles + (room["x"] - 1)] = room["wall_tile"]
-                # Borda direita
-                if room["x"] + room["w"] < width_tiles:
-                    walls_data[y * width_tiles + (room["x"] + room["w"])] = room["wall_tile"]
+    # Sala 3 - Marketing (tile 4)
+    for y in range(8, 12):
+        for x in range(2, 8):
+            index = y * width_tiles + x
+            rooms_data[index] = 4
     
-    # Criar objetos para as salas
-    private_zones = []
-    zones = []
-    
-    for room_name, room in rooms.items():
-        # Converter coordenadas para pixels
-        x_px = room["x"] * tile_size
-        y_px = room["y"] * tile_size
-        w_px = room["w"] * tile_size
-        h_px = room["h"] * tile_size
-        
-        room_obj = {
-            "id": len(private_zones) + 1,
-            "name": room_name,
-            "type": "department" if room_name in ["CEO", "RH", "Marketing", "Desenvolvimento"] else "common",
-            "x": x_px,
-            "y": y_px,
-            "width": w_px,
-            "height": h_px,
-            "visible": True,
-            "properties": [
-                {
-                    "name": "floor_tile",
-                    "type": "int",
-                    "value": room["floor_tile"]
-                },
-                {
-                    "name": "wall_tile",
-                    "type": "int",
-                    "value": room["wall_tile"]
-                }
-            ]
-        }
-        
-        if room_name in ["CEO", "RH", "Marketing", "Desenvolvimento"]:
-            private_zones.append(room_obj)
-        else:
-            zones.append(room_obj)
+    # Sala 4 - Desenvolvimento (tile 5)
+    for y in range(8, 12):
+        for x in range(10, 14):
+            index = y * width_tiles + x
+            rooms_data[index] = 5
     
     # Criar spawn point
     spawn_point = {
         "id": 1,
         "name": "spawn",
         "type": "spawn",
-        "x": 640,  # Centro do lobby
-        "y": 960,
+        "x": 128,  # Centro do lobby
+        "y": 128,
         "width": 32,
         "height": 32,
         "visible": True
     }
+    
+    # Criar objetos de zona
+    zones = [
+        {
+            "id": 2,
+            "name": "Lobby",
+            "type": "common",
+            "x": 64,   # 2 * 32
+            "y": 64,   # 2 * 32
+            "width": 192,  # 6 * 32
+            "height": 192, # 6 * 32
+            "visible": True,
+            "properties": [
+                {"name": "tile", "type": "int", "value": 2},
+                {"name": "description", "type": "string", "value": "Área central de recepção"}
+            ]
+        },
+        {
+            "id": 3,
+            "name": "CEO",
+            "type": "department",
+            "x": 320,  # 10 * 32
+            "y": 64,   # 2 * 32
+            "width": 128,  # 4 * 32
+            "height": 192, # 6 * 32
+            "visible": True,
+            "properties": [
+                {"name": "tile", "type": "int", "value": 3},
+                {"name": "description", "type": "string", "value": "Gabinete executivo"}
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Marketing",
+            "type": "department",
+            "x": 64,   # 2 * 32
+            "y": 256,  # 8 * 32
+            "width": 192,  # 6 * 32
+            "height": 128, # 4 * 32
+            "visible": True,
+            "properties": [
+                {"name": "tile", "type": "int", "value": 4},
+                {"name": "description", "type": "string", "value": "Estratégias de mercado"}
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Desenvolvimento",
+            "type": "department",
+            "x": 320,  # 10 * 32
+            "y": 256,  # 8 * 32
+            "width": 128,  # 4 * 32
+            "height": 128, # 4 * 32
+            "visible": True,
+            "properties": [
+                {"name": "tile", "type": "int", "value": 5},
+                {"name": "description", "type": "string", "value": "Equipe de programação"}
+            ]
+        }
+    ]
     
     # Estrutura do mapa
     map_data = {
@@ -129,13 +128,13 @@ def create_working_visual_map():
         "tilewidth": tile_size,
         "tileheight": tile_size,
         "compressionlevel": -1,
-        "nextlayerid": 8,
-        "nextobjectid": 50,
+        "nextlayerid": 5,
+        "nextobjectid": 10,
         "properties": [
             {
                 "name": "mapName",
                 "type": "string",
-                "value": "AR Online - Escritório com Divisões Visuais"
+                "value": "AR Online - Mapa com Divisões Visuais"
             },
             {
                 "name": "script",
@@ -179,26 +178,6 @@ def create_working_visual_map():
             },
             {
                 "id": 3,
-                "name": "walls",
-                "type": "tilelayer",
-                "width": width_tiles,
-                "height": height_tiles,
-                "opacity": 1,
-                "visible": True,
-                "data": walls_data
-            },
-            {
-                "id": 4,
-                "name": "collision",
-                "type": "tilelayer",
-                "width": width_tiles,
-                "height": height_tiles,
-                "opacity": 1,
-                "visible": False,
-                "data": walls_data
-            },
-            {
-                "id": 5,
                 "name": "start",
                 "type": "objectgroup",
                 "opacity": 1,
@@ -206,15 +185,7 @@ def create_working_visual_map():
                 "objects": [spawn_point]
             },
             {
-                "id": 6,
-                "name": "PrivateZones",
-                "type": "objectgroup",
-                "opacity": 1,
-                "visible": True,
-                "objects": private_zones
-            },
-            {
-                "id": 7,
+                "id": 4,
                 "name": "zones",
                 "type": "objectgroup",
                 "opacity": 1,
@@ -224,14 +195,22 @@ def create_working_visual_map():
         ]
     }
     
-    # Salvar arquivo
-    output_path = "public/wa_map-working-visual.tmj"
+    # Salvar como .tmj
+    output_path = "wa_map-visual-working.tmj"
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(map_data, f, indent=2, ensure_ascii=False)
     
-    print(f"✅ Mapa funcional com divisões visuais criado: {output_path}")
-    print(f"📊 Salas criadas: {len(rooms)}")
-    print(f"🎨 Usando tiles reais do WA_Room_Builder")
+    # Copiar para public também
+    with open(f"public/{output_path}", 'w', encoding='utf-8') as f:
+        json.dump(map_data, f, indent=2, ensure_ascii=False)
+    
+    print(f"✅ Mapa com divisões visuais criado:")
+    print(f"   📄 TMJ: {output_path} (raiz e public)")
+    print(f"📊 Tamanho: {width_tiles}x{height_tiles} tiles")
+    print(f"🏠 Salas: 4 salas com tiles 2, 3, 4, 5")
+    print(f"🎯 Spawn: Centro do lobby")
+    print(f"📐 Layout: 2x2 grid de salas")
+    print(f"🎨 Divisões visuais com tiles diferentes")
     
     return output_path
 
