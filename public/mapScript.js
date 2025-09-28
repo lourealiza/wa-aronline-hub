@@ -3,8 +3,8 @@
 WA.onInit().then(() => {
   // Mensagem de boas-vindas
   WA.chat.sendChatMessage(
-    'Bem-vindo ao Hub da AR Online! Digite /menu para ver as opções disponíveis.',
-    'AR Online Bot'
+    'Bem-vindo ao AR Online Virtual Office! Digite /menu para ver as opções disponíveis.',
+    'AR Online Virtual Office Bot'
   );
 
   // Menu de construção e interações
@@ -41,7 +41,7 @@ WA.onInit().then(() => {
 
   function showMainMenu() {
     WA.chat.sendChatMessage(
-      '🏢 MENU PRINCIPAL - AR Online Hub\n' +
+      '🏢 MENU PRINCIPAL - AR Online Virtual Office\n' +
       '📊 COMANDOS DE INFORMAÇÃO:\n' +
       '/status - Status da empresa\n' +
       '/team - Informações da equipe\n' +
