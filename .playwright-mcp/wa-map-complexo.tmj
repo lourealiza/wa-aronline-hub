@@ -3830,32 +3830,6 @@
           ]
         }
       ]
-    },
-    {
-      "id": 6,
-      "name": "start",
-      "type": "objectgroup",
-      "opacity": 1,
-      "visible": true,
-      "objects": [
-        {
-          "id": 1,
-          "name": "Start Area",
-          "type": "",
-          "x": 544,
-          "y": 384,
-          "width": 224,
-          "height": 224,
-          "visible": true,
-          "properties": [
-            {
-              "name": "type",
-              "type": "string",
-              "value": "start"
-            }
-          ]
-        }
-      ]
     }
   ],
   "nextlayerid": 1,
@@ -3872,7 +3846,7 @@
       "tileheight": 32,
       "tilecount": 1000,
       "columns": 25,
-      "image": "WA_Room_Builder.png",
+      "image": "https://lourealiza.github.io/wa-aronline-hub/WA_Room_Builder.png",
       "imagewidth": 800,
       "imageheight": 1280
     }

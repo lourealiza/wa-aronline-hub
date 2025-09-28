@@ -34,7 +34,7 @@ def create_complex_office_map():
                 "tileheight": 32,
                 "tilecount": 1000,
                 "columns": 25,
-                "image": "https://lourealiza.github.io/wa-aronline-hub/WA_Room_Builder.png",
+                "image": "WA_Room_Builder.png",
                 "imagewidth": 800,
                 "imageheight": 1280
             }
@@ -113,6 +113,16 @@ def create_complex_office_map():
     floor_layer_obj = {
         "id": 5,
         "name": "floorLayer",
+        "type": "objectgroup",
+        "opacity": 1,
+        "visible": True,
+        "objects": []
+    }
+    
+    # Layer start (obrigatório para spawn)
+    start_layer = {
+        "id": 6,
+        "name": "start",
         "type": "objectgroup",
         "opacity": 1,
         "visible": True,
@@ -368,13 +378,30 @@ def create_complex_office_map():
         }
     ]
     
+    # Adicionar objetos ao layer start (área de spawn)
+    start_layer["objects"] = [
+        {
+            "id": 1,
+            "name": "Start Area",
+            "type": "",
+            "x": (hub_center_x - 3) * tile_size,
+            "y": (hub_center_y - 3) * tile_size,
+            "width": 7 * tile_size,
+            "height": 7 * tile_size,
+            "visible": True,
+            "properties": [
+                {"name": "type", "type": "string", "value": "start"}
+            ]
+        }
+    ]
+    
     # Atualizar dados dos layers
     floor_layer["data"] = floor_data
     walls_layer["data"] = walls_data
     decorations_layer["data"] = decorations_data
     
     # Adicionar layers ao mapa
-    map_data["layers"] = [floor_layer, walls_layer, decorations_layer, zones_layer, floor_layer_obj]
+    map_data["layers"] = [floor_layer, walls_layer, decorations_layer, zones_layer, floor_layer_obj, start_layer]
     
     return map_data
 
