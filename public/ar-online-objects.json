@@ -1,0 +1,183 @@
+{
+  "name": "AR Online Custom Objects",
+  "version": "1.0.0",
+  "description": "Objetos customizados para o AR Online Virtual Office",
+  "objects": [
+    {
+      "id": "ar-online-logo",
+      "name": "AR Online Logo",
+      "image": "tilesets/ar_online_lobby_logo.png",
+      "width": 64,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["logo", "branding", "ar-online"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-monitors",
+      "name": "Monitores de Desenvolvimento",
+      "image": "tilesets/ar_online_dev_monitors.png",
+      "width": 64,
+      "height": 48,
+      "depth": "standing",
+      "tags": ["monitor", "desenvolvimento", "tecnologia"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-holographic",
+      "name": "Telas Holográficas",
+      "image": "tilesets/ar_online_holographic_screens.png",
+      "width": 48,
+      "height": 48,
+      "depth": "standing",
+      "tags": ["holographic", "futuro", "tecnologia"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-balcao",
+      "name": "Balcão de Atendimento",
+      "image": "tilesets/ar_online_balcao_atendimento.png",
+      "width": 64,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["atendimento", "balcao", "recepcao"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-telao",
+      "name": "Telão Tecnológico",
+      "image": "tilesets/ar_online_telao_tecnologico.png",
+      "width": 96,
+      "height": 64,
+      "depth": "standing",
+      "tags": ["telao", "apresentacao", "tecnologia"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-garden",
+      "name": "Jardim Virtual",
+      "image": "tilesets/ar_online_virtual_garden.png",
+      "width": 80,
+      "height": 48,
+      "depth": "on-floor",
+      "tags": ["jardim", "natureza", "relaxamento"],
+      "collision": false,
+      "floating": true
+    },
+    {
+      "id": "ar-online-hr-boards",
+      "name": "Quadros de RH",
+      "image": "tilesets/ar_online_hr_boards.png",
+      "width": 48,
+      "height": 64,
+      "depth": "standing",
+      "tags": ["rh", "quadros", "informacao"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-marketing",
+      "name": "Quadro de Marketing",
+      "image": "tilesets/ar_online_marketing_board.png",
+      "width": 64,
+      "height": 48,
+      "depth": "standing",
+      "tags": ["marketing", "quadro", "campanhas"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-project",
+      "name": "Quadro de Projetos",
+      "image": "tilesets/ar_online_project_management_board.png",
+      "width": 80,
+      "height": 48,
+      "depth": "standing",
+      "tags": ["projetos", "gestao", "kanban"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-sales",
+      "name": "Dashboard de Vendas",
+      "image": "tilesets/ar_online_sales_dashboard.png",
+      "width": 64,
+      "height": 48,
+      "depth": "standing",
+      "tags": ["vendas", "dashboard", "metricas"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-support",
+      "name": "Dashboard de Suporte",
+      "image": "tilesets/ar_online_support_dashboard.png",
+      "width": 64,
+      "height": 48,
+      "depth": "standing",
+      "tags": ["suporte", "dashboard", "tickets"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-email-icon",
+      "name": "Ícone AR Email",
+      "image": "tilesets/ar_online_ar_email_icon.png",
+      "width": 32,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["email", "ar", "comunicacao"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-sms-icon",
+      "name": "Ícone AR SMS",
+      "image": "tilesets/ar_online_ar_sms_icon.png",
+      "width": 32,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["sms", "ar", "comunicacao"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-whatsapp-icon",
+      "name": "Ícone AR WhatsApp",
+      "image": "tilesets/ar_online_ar_whatsapp_icon.png",
+      "width": 32,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["whatsapp", "ar", "comunicacao"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-voz-icon",
+      "name": "Ícone AR Voz",
+      "image": "tilesets/ar_online_ar_voz_icon.png",
+      "width": 32,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["voz", "ar", "comunicacao"],
+      "collision": true,
+      "floating": false
+    },
+    {
+      "id": "ar-online-cartas-icon",
+      "name": "Ícone AR Cartas",
+      "image": "tilesets/ar_online_ar_cartas_icon.png",
+      "width": 32,
+      "height": 32,
+      "depth": "standing",
+      "tags": ["cartas", "ar", "comunicacao"],
+      "collision": true,
+      "floating": false
+    }
+  ]
+}

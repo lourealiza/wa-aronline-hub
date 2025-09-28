@@ -17,6 +17,11 @@ const mapFiles = [
   'wa_map-working.tmj'
 ];
 
+const additionalFiles = [
+  'editor.html',
+  'ar-online-objects.json'
+];
+
 // Função para copiar arquivo
 function copyFile(source, dest) {
   try {
@@ -39,6 +44,12 @@ if (!fs.existsSync('dist')) {
 // Copiar arquivos de mapa
 console.log('📁 Copiando arquivos de mapa para dist/...');
 mapFiles.forEach(file => {
+  copyFile(file, `dist/${file}`);
+});
+
+// Copiar arquivos adicionais
+console.log('📁 Copiando arquivos adicionais para dist/...');
+additionalFiles.forEach(file => {
   copyFile(file, `dist/${file}`);
 });
 

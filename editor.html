@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="title" content="AR Online Virtual Office - Editor de Mapas">
+    <title>AR Online Virtual Office - Editor de Mapas</title>
+    <link rel="icon" href="./images/favicon.svg" type="image/svg+xml">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .content {
+            padding: 40px;
+        }
+        .editor-section {
+            margin-bottom: 40px;
+        }
+        .editor-section h2 {
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .map-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .map-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
+        .map-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .map-card h3 {
+            color: #333;
+            margin: 0 0 15px 0;
+        }
+        .map-card p {
+            color: #666;
+            margin: 0 0 20px 0;
+            font-size: 0.9em;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .features {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .features h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            padding: 8px 0;
+            color: #666;
+        }
+        .features li:before {
+            content: "✨ ";
+            margin-right: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2196f3;
+            margin-bottom: 30px;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 5px 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏢 AR Online Virtual Office</h1>
+            <p>Editor de Mapas Interativo</p>
+        </div>
+        
+        <div class="content">
+            <a href="index.html" class="back-link">← Voltar para a página principal</a>
+            
+            <div class="instructions">
+                <h3>📋 Como usar o Editor de Mapas</h3>
+                <ol>
+                    <li>Clique em "Abrir Editor" para qualquer mapa</li>
+                    <li>Use o painel direito para arrastar objetos e móveis</li>
+                    <li>Clique nos objetos para adicionar ações (links, videoconferência, áudio)</li>
+                    <li>Use SHIFT para alinhar objetos à grade</li>
+                    <li>Pressione DELETE para remover objetos selecionados</li>
+                    <li>Faça upload de objetos customizados se necessário</li>
+                </ol>
+            </div>
+
+            <div class="editor-section">
+                <h2>🗺️ Escolha um Mapa para Editar</h2>
+                <div class="map-links">
+                    <div class="map-card">
+                        <h3>Mapa Profissional</h3>
+                        <p>Mapa completo com 24x20 tiles, ideal para escritórios grandes</p>
+                        <a href="https://play.workadventu.re/_/global/lourealiza.github.io/ar-online-virtual-office/wa_map-ar-online-professional.tmj" 
+                           class="btn" target="_blank">Abrir Editor</a>
+                    </div>
+                    
+                    <div class="map-card">
+                        <h3>Mapa Interativo</h3>
+                        <p>Mapa com divisões visuais e interações avançadas</p>
+                        <a href="https://play.workadventu.re/_/global/lourealiza.github.io/ar-online-virtual-office/wa_map-interativo.tmj" 
+                           class="btn btn-secondary" target="_blank">Abrir Editor</a>
+                    </div>
+                    
+                    <div class="map-card">
+                        <h3>Mapa Funcional</h3>
+                        <p>Mapa simples e funcional, perfeito para testes</p>
+                        <a href="https://play.workadventu.re/_/global/lourealiza.github.io/ar-online-virtual-office/wa_map-working.tmj" 
+                           class="btn btn-success" target="_blank">Abrir Editor</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <h3>🎨 Funcionalidades do Editor</h3>
+                <ul>
+                    <li><strong>Arrastar e Soltar:</strong> Objetos do painel direito para o mapa</li>
+                    <li><strong>Rotacionar Objetos:</strong> Alguns objetos podem ser rotacionados (cima, esquerda, baixo, direita)</li>
+                    <li><strong>Cores Personalizadas:</strong> Muitos objetos suportam diferentes cores</li>
+                    <li><strong>Ações Interativas:</strong> Adicione links, videoconferências e áudio aos objetos</li>
+                    <li><strong>Alinhamento à Grade:</strong> Use SHIFT para alinhar objetos perfeitamente</li>
+                    <li><strong>Objetos Customizados:</strong> Faça upload de seus próprios objetos e móveis</li>
+                    <li><strong>Profundidade de Objetos:</strong> Configure como os avatares interagem com os objetos</li>
+                    <li><strong>Objetos Flutuantes:</strong> Coloque objetos livremente sem restrições de grade</li>
+                </ul>
+            </div>
+
+            <div class="editor-section">
+                <h2>📚 Recursos Adicionais</h2>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://docs.workadventu.re/map-building/inline-editor/entity-editor/" 
+                       class="btn" target="_blank">📖 Documentação Completa</a>
+                    <a href="admin-editor.html" class="btn btn-secondary" target="_blank">🔧 Editor Administrativo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
