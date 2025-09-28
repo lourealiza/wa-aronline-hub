@@ -16,7 +16,7 @@
     {
       "name": "mapName",
       "type": "string",
-      "value": "AR Online Virtual Office - Mapa Funcional"
+      "value": "AR Online Virtual Office"
     },
     {
       "name": "script",
