@@ -73,6 +73,16 @@ if (fs.existsSync('public')) {
   });
 }
 
+// Copiar pasta tilesets para dist (necessário para GitHub Pages)
+console.log('📁 Copiando pasta tilesets/ para dist/...');
+if (fs.existsSync('tilesets')) {
+  const tilesetsPath = path.join('dist', 'tilesets');
+  if (!fs.existsSync(tilesetsPath)) {
+    fs.mkdirSync(tilesetsPath, { recursive: true });
+  }
+  copyDirectory('tilesets', tilesetsPath);
+}
+
 // Função para copiar diretório recursivamente
 function copyDirectory(source, dest) {
   if (!fs.existsSync(dest)) {
