@@ -14,7 +14,8 @@ const __dirname = path.dirname(__filename);
 const mapFiles = [
   'wa_map-interativo.tmj',
   'wa_map-ar-online-professional.tmj',
-  'wa_map-working.tmj'
+  'wa_map-working.tmj',
+  'wa_map-complexo.tmj'
 ];
 
 const additionalFiles = [
