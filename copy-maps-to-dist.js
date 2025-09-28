@@ -3,19 +3,18 @@
  * Script para copiar arquivos de mapa para a pasta dist após o build
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Arquivos de mapa para copiar
 const mapFiles = [
-  'wa_map-working.tmj',
-  'wa_map-teste.tmj',
   'wa_map-interativo.tmj',
-  'wa_map-simple-working.tmj',
-  'wa_map-ultra-simple.tmj',
-  'wa_map-visual-objects.tmj',
-  'wa_map-visual-rooms.tmj',
-  'wa_map-simple-visual.tmj'
+  'wa_map-ar-online-professional.tmj',
+  'wa_map-working.tmj'
 ];
 
 // Função para copiar arquivo
