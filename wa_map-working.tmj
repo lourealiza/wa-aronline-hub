@@ -32,7 +32,7 @@
       "tileheight": 32,
       "tilecount": 1000,
       "columns": 25,
-      "image": "WA_Room_Builder.png",
+      "image": "https://lourealiza.github.io/wa-aronline-hub/WA_Room_Builder.png",
       "imagewidth": 800,
       "imageheight": 1280
     }
