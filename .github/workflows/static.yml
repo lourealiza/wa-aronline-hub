@@ -57,8 +57,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist folder + public folder for static files
-          path: '.'
+          # Upload dist folder for GitHub Pages
+          path: 'dist'
 
   # Deployment job
   deploy:
