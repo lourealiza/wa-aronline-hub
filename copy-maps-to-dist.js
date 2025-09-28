@@ -83,6 +83,15 @@ if (fs.existsSync('tilesets')) {
   copyDirectory('tilesets', tilesetsPath);
 }
 
+// Copiar tilesets principais para a raiz do dist (para URLs simples)
+console.log('📁 Copiando tilesets principais para raiz do dist/...');
+const mainTilesets = ['WA_Room_Builder.png', 'tileset_colors_walls.png'];
+mainTilesets.forEach(tileset => {
+  const source = path.join('tilesets', tileset);
+  const dest = path.join('dist', tileset);
+  copyFile(source, dest);
+});
+
 // Função para copiar diretório recursivamente
 function copyDirectory(source, dest) {
   if (!fs.existsSync(dest)) {
