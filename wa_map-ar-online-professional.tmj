@@ -1542,6 +1542,14 @@
       ]
     },
     {
+      "id": 6,
+      "name": "floorLayer",
+      "type": "objectgroup",
+      "opacity": 1,
+      "visible": true,
+      "objects": []
+    },
+    {
       "id": 5,
       "name": "zones",
       "type": "objectgroup",
